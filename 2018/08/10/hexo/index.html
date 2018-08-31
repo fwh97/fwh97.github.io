@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang=zh-cn>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="前端学习历程">
+  <meta name="keywords" content="">
+  
+    <link rel="icon" href="/favicon.ico">
+  
+    
+  <title>hexo | 个人博客</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>个人博客</span>
+    </a>
+    <ul class="right-header">
+      
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>hexo</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018/08/10</time>
+            
+            
+          </div>
+          <h4 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<h4 id="将md-转-html"><a href="#将md-转-html" class="headerlink" title="将md 转 html"></a>将md 转 html</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<h4 id="本地预览"><a href="#本地预览" class="headerlink" title="本地预览"></a>本地预览</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<h4 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<h4 id="修改配置文件-config-yml"><a href="#修改配置文件-config-yml" class="headerlink" title="修改配置文件_config.yml"></a>修改配置文件_config.yml</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: git</span><br><span class="line">repo: git@github.com:fwh97/fwh97.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<h4 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i hexo-deploy-git -g</span><br></pre></td></tr></table></figure>
+<h4 id="推送到github"><a href="#推送到github" class="headerlink" title="推送到github"></a>推送到github</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h3 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h3><h4 id="最新-release-版"><a href="#最新-release-版" class="headerlink" title="最新 release 版"></a>最新 release 版</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone -b master https://github.com/lewis-geek/hexo-theme-Aath.git themes/aath</span><br></pre></td></tr></table></figure>
+<h4 id="开发版"><a href="#开发版" class="headerlink" title="开发版"></a>开发版</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone -b develop https://github.com/lewis-geek/hexo-theme-Aath.git themes/aath</span><br></pre></td></tr></table></figure>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-renderer-sass</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>hexo 有两个配置文件，一个在 hexo 项目的根目录，另一个在主题文件夹的根目录，文件名都是均为 <code>_config.yml</code> 。</p>
+<h3 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: aath</span><br><span class="line"></span><br><span class="line"># highlight</span><br><span class="line">## line_number</span><br><span class="line">highlight:</span><br><span class="line">  line_number: false</span><br><span class="line"></span><br><span class="line"># Comment</span><br><span class="line">## disqus</span><br><span class="line">## livere</span><br><span class="line">disqus_shortname: your_disqus_shortname</span><br><span class="line">livere_uid: your_livere_uid</span><br><span class="line"></span><br><span class="line"># favicon</span><br><span class="line">favicon: /favicon.ico</span><br><span class="line"></span><br><span class="line"># Aside</span><br><span class="line">## search</span><br><span class="line">## avatar</span><br><span class="line">## aside-description</span><br><span class="line">## links</span><br><span class="line">search: true</span><br><span class="line">avatar: http://olnzpdi2u.bkt.clouddn.com/avatar.jpg</span><br><span class="line">aside-description: aside-description</span><br><span class="line">links:</span><br><span class="line">  百度: https://www.baidu.com/</span><br><span class="line">  谷歌: https://www.google.com/</span><br><span class="line">  知乎: https://www.zhihu.com/</span><br></pre></td></tr></table></figure>
+<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># main menu navigation</span><br><span class="line">menu:</span><br><span class="line">  首页: /</span><br><span class="line">  关于: /about</span><br><span class="line">  归档: /archives</span><br><span class="line">  标签: /tags</span><br><span class="line"></span><br><span class="line"># Miscelaneous</span><br><span class="line">favicon: /favicon.ico</span><br></pre></td></tr></table></figure>
+<h3 id="About-页面"><a href="#About-页面" class="headerlink" title="About 页面"></a>About 页面</h3><p>如果需要生成 about 页面，需要在 source 目录下创建一个 about 目录，并在 about 目录下创建一个 index.md 文件，为该文件添加 <code>layout: about</code> 属性。此时就可在 <code>&lt;your_url&gt;/about</code> 路径访问到 about 页面了。</p>
+<h3 id="Tags-页面"><a href="#Tags-页面" class="headerlink" title="Tags 页面"></a>Tags 页面</h3><p>如果需要生成 tags 页面，需要在 source 目录下创建一个 tags 目录，并在 tags 目录下创建一个 index.md 文件，为该文件添加 <code>layout: tags</code> 属性。此时就可在 <code>&lt;your_url&gt;/tags</code> 路径访问到 tags 页面了。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h3 id="fancybox"><a href="#fancybox" class="headerlink" title="fancybox"></a>fancybox</h3><p>Aath 使用 <a href="http://fancyapps.com/fancybox/" target="_blank" rel="noopener">fancyBox</a> 浏览文章中的图片。</p>
+<h3 id="文章目录"><a href="#文章目录" class="headerlink" title="文章目录"></a>文章目录</h3><p>自动为文章生成多级目录，目录样式使用了 <code>position: sticky</code> 属性，实现了目录相对浏览器固定的效果，这是一个较新的属性，需要浏览器支持。</p>
+<h3 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h3><p>使用 GitHub 的 markdown 样式。</p>
+<h3 id="文章列表"><a href="#文章列表" class="headerlink" title="文章列表"></a>文章列表</h3><h4 id="文章图片"><a href="#文章图片" class="headerlink" title="文章图片"></a>文章图片</h4><p>在 markdown 文件顶部添加 <code>img</code> 属性，属性值为图片地址。</p>
+<h4 id="文章描述"><a href="#文章描述" class="headerlink" title="文章描述"></a>文章描述</h4><p>在 markdown 文件顶部添加 <code>description</code> 属性，可以在首页文章列表显示文章的描述，如果没有这个属性，会自动截取文章内容作为文章的描述。</p>
+
+        </section>
+    </article>
+    
+        <!-- disqus 评论框 start -->
+        <div class="comment">
+            <div id="disqus_thread" class="disqus-thread">
+              <i>Loading comments box needs to over the wall</i>
+            </div>
+        </div>
+        <!-- disqus 评论框 end -->
+    
+    
+        <!-- livere 评论框 start -->
+        <div class="comment">
+            <div id="lv-container" data-id="city" data-uid="your_livere_uid"></div>
+        </div>
+        <!-- livere 评论框 end -->
+        
+  </div>
+  <aside>
+    
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装hexo"><span class="toc-number">1.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将md-转-html"><span class="toc-number">3.</span> <span class="toc-text">将md 转 html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本地预览"><span class="toc-number">4.</span> <span class="toc-text">本地预览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#清除缓存"><span class="toc-number">5.</span> <span class="toc-text">清除缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改配置文件-config-yml"><span class="toc-number">6.</span> <span class="toc-text">修改配置文件_config.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装插件"><span class="toc-number">7.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推送到github"><span class="toc-number">8.</span> <span class="toc-text">推送到github</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装主题"><span class="toc-number"></span> <span class="toc-text">安装主题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最新-release-版"><span class="toc-number">1.</span> <span class="toc-text">最新 release 版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开发版"><span class="toc-number">2.</span> <span class="toc-text">开发版</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖"><span class="toc-number"></span> <span class="toc-text">依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number"></span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目配置"><span class="toc-number"></span> <span class="toc-text">项目配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主题配置"><span class="toc-number"></span> <span class="toc-text">主题配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#About-页面"><span class="toc-number"></span> <span class="toc-text">About 页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tags-页面"><span class="toc-number"></span> <span class="toc-text">Tags 页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特性"><span class="toc-number"></span> <span class="toc-text">特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fancybox"><span class="toc-number"></span> <span class="toc-text">fancybox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章目录"><span class="toc-number"></span> <span class="toc-text">文章目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown"><span class="toc-number"></span> <span class="toc-text">markdown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章列表"><span class="toc-number"></span> <span class="toc-text">文章列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章图片"><span class="toc-number">1.</span> <span class="toc-text">文章图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文章描述"><span class="toc-number">2.</span> <span class="toc-text">文章描述</span></a></li></ol>
+        </div>
+    </div>
+    
+  </aside>
+</main>
+
+<!-- disqus 公共JS代码 -->
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = "your_disqus_shortname";
+  var disqus_identifier = "http://fwh97.com/2018/08/10/hexo/";
+  var disqus_url = "http://fwh97.com/2018/08/10/hexo/";
+
+  isAgent(getDisqus)
+
+  // determine user agent in China
+  function isAgent(cb) {
+    var url = '//graph.facebook.com/feed?callback=h';
+    var xhr = new XMLHttpRequest();
+    var called = false;
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      called = true;
+      cb(true);
+      }
+    };
+    xhr.send();
+    // timeout 1s, this facebook API is very fast.
+    setTimeout(function() {
+      if (!called) {
+      xhr.abort();
+      cb(false)
+      }
+    }, 1000);
+  }
+
+  function getDisqus(isAgent) {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; 
+    dsq.async = true
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq)
+  }
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+<script type="text/javascript">
+  (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') { return; }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2018 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/lib/in-view.min.js"></script>
+<script src="/lib/lodash.min.js"></script>
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
+
+  document.body.addEventListener('touchstart', function(){});
+  
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
+
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
+
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
+
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
+
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
+
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+<script src="/lib/jquery.fancybox.min.js"></script>
+
+
+</body>
+</html>
