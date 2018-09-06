@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="前端学习历程">
+  <meta name="keywords" content="">
+  
+    <link rel="icon" href="/favicon.ico">
+  
+    
+  <title>css | 个人博客</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>个人博客</span>
+    </a>
+    <ul class="right-header">
+      
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>css</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年09月06日</time>
+            
+            
+          </div>
+          <h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. 浮动 float</span><br><span class="line">2. 绝对定位：position: absolute;</span><br><span class="line">3. flexbox布局 （移动端开发）弹性布局（display: flex;）</span><br><span class="line">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html</span><br><span class="line">4. display: table; -&gt; display: table-cell;</span><br><span class="line">5. 网格布局（下一代css3)Grid布局</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">表格布局：</span><br><span class="line">让主元素作为一个表格，设置为width:100% ; display:table；</span><br><span class="line">其下方的所有子元素设置为display:table-cell;</span><br><span class="line">网格布局【grid布局】：</span><br><span class="line">1.先将容器（主元素）声明为网格布局：display:grid;设置为width:100%，其行高grid-template-rows: 100px;其列宽grid-template-columns: 300px auto 300px;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">网格布局简介https://zhuanlan.zhihu.com/p/26757425?group_id=844328463711240192</span><br><span class="line">CSS在处理网页布局方面一直做的不是很好。一开始我们用的是table（表格）布局，然后用float(浮动)，position（定位）和inline-block（行内块）布局，但是这些方法本质上是hack，遗漏了很多功能，例如垂直居中。后来出了flexbox(盒子布局)，解决了很多布局问题，但是它仅仅是一维布局，而不是复杂的二维布局，实际上它们（flexbox与grid）能很好的配合使用。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">每个解决方案的优缺点</span><br><span class="line">1浮动  缺点：脱离文档流，需清浮动    优点：兼容性好</span><br><span class="line">2定位  缺点：可使用性较差  优点：快捷</span><br><span class="line">3flex  缺点：兼容性差 优点：css3</span><br><span class="line">4table  缺点：当其中一个单元格高度超出的时，其他高度也会变化   优点：兼容性好</span><br><span class="line">5Grid  优点：代码量少 可以做很多复杂的事情但代码量能减少很多</span><br><span class="line">tip:假设是未知高度，flex和table布局可用</span><br></pre></td></tr></table></figure>
+<h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">清除浮动</span><br><span class="line">.clearfix:after &#123;  content: &quot;&quot;; display: block; height: 0; clear: both; visibility: hidden;  &#125;</span><br><span class="line">.clearfix &#123;*zoom: 1;&#125;   /* IE6、7 专有 */</span><br><span class="line"></span><br><span class="line">已经给 行内元素添加了浮动 此时不需要转换这个元素 display：inline-block 也可以有宽高给定值了，则padding会撑开</span><br></pre></td></tr></table></figure>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p>标准模型width不计算padding和border；<br>IE模型width计算padding和border。<br>box-sizing : content-box(标准模型-默认)/border-box(IE模型)</p>
+<p>获取宽高<br>dom.style.width（只能取内联宽高）<br>dom.currentStyle.width (浏览器渲染之后的取值，只有IE支持)<br>window.getComputedStyle(dom).width (浏览器渲染之后的取值，兼容性更好)<br>dom.getBoundingClientRect().width/height/left/top (常用于计算位置)</p>
+<h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>为什么会边距重叠？块级盒子上下挨个排列，中间margin取最大值。<br>BFC原理?<br>1.挨个排列2.外边距重叠3.块盒margin-left与包含块border-left相连4.bfc不被浮动元素覆盖5.当bfc计算高度时，浮动元素算在内（效果清除浮动）<br>BFC的使用场景？清除浮动；两栏式和三栏式布局自适应；</p>
+<p>BFC（边距重叠）块级格式化上下文<br>BFC的原理：<br>1.BFC元素垂直方向的边距会发生重叠<br>2.BFC的区域不会与浮动元素的box重叠<br>3.BFC在页面上是一个独立的容器，外面的元素不会影响里面的元素，里面的元素也不会影响外面的元素<br>4.计算BFC高度时，浮动元素也会参与计算</p>
+<p>如何创建BFC？<br>1.float值不为none<br>2.position不是static或relative<br>3.display是table相关的<br>4.overflow不是visible</p>
+<ol>
+<li>只有 文字才 能组成段落  因此 p  里面不能放块级元素，同理还有这些标签h1,h2,h3,h4,h5,h6,dt，他们都是文字类块级标签，里面不能放其他块级元素。</li>
+<li>链接里面不能再放链接。</li>
+<li>a里面可以放块级元素</li>
+</ol>
+<h2 id="优先级："><a href="#优先级：" class="headerlink" title="优先级："></a>优先级：</h2><p>/**  0000<br>    div 0001<br>    .one 0010</p>
+<pre><code>#two 0100
+行内 1000
+important ∞*/
+</code></pre><p>/<em>1. 权重相同  则就近原则</em>/<br>/<em>2. 权重会叠加0001 + 0001  =  0002</em>/</p>
+<h2 id="溢出文字隐藏："><a href="#溢出文字隐藏：" class="headerlink" title="溢出文字隐藏："></a>溢出文字隐藏：</h2><p><strong>text-overflow</strong>只是用来说明文字溢出时用什么方式显示，要实现溢出时产生<strong>省略号</strong>的效果，还须定义<strong>强制文本在一行内显示</strong>（white-space:nowrap）及<strong>溢出内容为隐藏</strong>（overflow:hidden），只有这样才能实现<strong>溢出文本显示省略号</strong>的效果，代码如下： </p>
+<p>white-space: nowrap;<br>/<em>1.强制在同一行内显示所有文本，直到文本结束或者遭遇br标签对象才换行</em>/<br>overflow: hidden;  /<em> 2. 超出的部分 隐藏</em>/<br>text-overflow: ellipsis | clip;  /<em> 3. 溢出的部分用省略号替代</em>/ clip剪切</p>
+<h3 id="img"><a href="#img" class="headerlink" title="img"></a>img</h3><p>/<em>vertical-align: middle;</em>/  图片以基线对齐</p>
+<h2 id="字与字体-嵌入字体-font-face"><a href="#字与字体-嵌入字体-font-face" class="headerlink" title="字与字体 嵌入字体@font-face"></a>字与字体 嵌入字体@font-face</h2><p><strong>@font-face</strong>能够加载服务器端的字体文件，让浏览器端可以显示用户电脑里没有安装的字体。 </p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family : 字体名称;</span><br><span class="line">    src : 字体文件在服务器上的相对或绝对路径;</span><br><span class="line">&#125;</span><br><span class="line">p &#123;</span><br><span class="line">    font-size :12px;</span><br><span class="line">    font-family : &quot;My Font&quot;;</span><br><span class="line">    /*必须项，设置@font-face中font-family同样的值*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS3文字与字体-文本阴影text-shadow"><a href="#CSS3文字与字体-文本阴影text-shadow" class="headerlink" title="CSS3文字与字体 文本阴影text-shadow"></a>CSS3文字与字体 文本阴影text-shadow</h2><p>text-shadow可以用来设置文本的阴影效果。</p>
+<p><strong>语法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">text-shadow: X-Offset Y-Offset blur color;</span><br></pre></td></tr></table></figure>
+<p>X-Offset：表示阴影的水平偏移距离，其值为正值时阴影向右偏移，反之向左偏移；      </p>
+<p>Y-Offset：是指阴影的垂直偏移距离，如果其值是正值时，阴影向下偏移，反之向上偏移；</p>
+<p>Blur：是指阴影的模糊程度，其值不能是负值，如果值越大，阴影越模糊，反之阴影越清晰，如果不需要阴影模糊可以将Blur值设置为0；</p>
+<p>Color：是指阴影的颜色，其可以使用rgba色。</p>
+<p>比如，我们可以用下面代码实现设置阴影效果。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">text-shadow: 0 1px 1px #fff</span><br></pre></td></tr></table></figure>
+<h2 id="CSS3背景-background-origin"><a href="#CSS3背景-background-origin" class="headerlink" title="CSS3背景 background-origin"></a>CSS3背景 background-origin</h2><p>设置元素背景图片的<strong>原始起始位置</strong>。</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-origin ： border-box | padding-box | content-box;</span><br></pre></td></tr></table></figure>
+<p>参数分别表示背景图片是从<strong>边框</strong>，还是<strong>内边距（默认值）</strong>，或者是<strong>内容区域</strong>开始显示。</p>
+<p><strong>需要注意的是</strong>，如果背景不是<strong>no-repeat</strong>，这个属性无效，它会从边框开始显示。 </p>
+<h2 id="CSS3背景-background-clip"><a href="#CSS3背景-background-clip" class="headerlink" title="CSS3背景 background-clip"></a>CSS3背景 background-clip</h2><p>用来将背景图片做适当的<strong>裁剪</strong>以适应实际需要。</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-clip ： border-box | padding-box | content-box | no-clip</span><br></pre></td></tr></table></figure>
+<p>参数分别表示从<strong>边框、</strong>或<strong>内填充</strong>，或者<strong>内容区域</strong>向外裁剪背景。<strong>no-clip</strong>表示不裁切，和<strong>参数border-box</strong>显示同样的效果。<code>backgroud-clip</code>默认值为<strong>border-box</strong>。</p>
+<h2 id="CSS3背景-background-size"><a href="#CSS3背景-background-size" class="headerlink" title="CSS3背景 background-size"></a>CSS3背景 background-size</h2><p>设置背景图片的大小，以<strong>长度值</strong>或<strong>百分比</strong>显示，还可以通过<strong>cover</strong>和<strong>contain</strong>来对图片进行伸缩。</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-size: auto | &lt;长度值&gt; | &lt;百分比&gt; | cover | contain</span><br></pre></td></tr></table></figure>
+<p>取值说明：</p>
+<p><strong>1、auto</strong>：默认值，不改变背景图片的原始高度和宽度；</p>
+<p><strong>2、&lt;长度值&gt;</strong>：成对出现如200px 50px，将背景图片宽高依次设置为前面两个值，当设置一个值时，将其作为图片宽度值来<strong>等比缩放</strong>；</p>
+<p><strong>3、&lt;百分比&gt;</strong>：0％~100％之间的任何值，将背景图片宽高依次设置为所在元素宽高乘以前面百分比得出的数值，当设置一个值时同上；</p>
+<p><strong>4、cover</strong>：顾名思义为<strong>覆盖</strong>，即将背景图片等比缩放以<strong>填满整个容器</strong>；</p>
+<p><strong>5、contain</strong>：容纳，即将背景图片等比缩放至<strong>某一边紧贴容器边缘为止</strong>。</p>
+<h2 id="CSS3背景-多背景-backgrounds"><a href="#CSS3背景-多背景-backgrounds" class="headerlink" title="CSS3背景 多背景 backgrounds"></a>CSS3背景 多背景 backgrounds</h2><p>多重背景，也就是CSS2里<strong>background</strong>的属性外加<strong>origin</strong>、<strong>clip</strong>和<strong>size</strong>组成的新background的多次叠加，缩写时为用<strong>逗号</strong>隔开的每组值；用分解写法时，如果有多个背景图片，而其他属性只有一个（例如background-repeat只有一个），表明所有背景图片应用该属性值。</p>
+<p>语法缩写如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background ： [background-color] | [background-image] | [background-position][/background-size] | [background-repeat] | [background-attachment] | [background-clip] | [background-origin],...</span><br></pre></td></tr></table></figure>
+<p>可以把上面的缩写拆解成以下形式：</p>
+<p>background-image:url1,url2,…,urlN;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-repeat : repeat1,repeat2,...,repeatN;</span><br><span class="line">backround-position : position1,position2,...,positionN;</span><br><span class="line">background-size : size1,size2,...,sizeN;</span><br><span class="line">background-attachment : attachment1,attachment2,...,attachmentN;</span><br><span class="line">background-clip : clip1,clip2,...,clipN;</span><br><span class="line">background-origin : origin1,origin2,...,originN;</span><br><span class="line">background-color : color;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background:</span><br><span class="line">url(http://static.mukewang.com/static/img/logo_index.png) no-repeat left top / 75% 50% ,url(http://static.mukewang.com/static/img/logo_index.png) no-repeat right bottom /50%  45%;  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ol>
+<li>用逗号隔开每组 background 的缩写值；</li>
+<li>如果有 size 值，需要紧跟 position 并且用 “/“ 隔开；</li>
+<li>如果有多个背景图片，而其他属性只有一个（例如 background-repeat 只有一个），表明所有背景图片应用该属性值。</li>
+<li>background-color 只能设置一个。</li>
+</ol>
+<h2 id="CSS3颜色-渐变色彩"><a href="#CSS3颜色-渐变色彩" class="headerlink" title="CSS3颜色 渐变色彩"></a>CSS3颜色 渐变色彩</h2><p><strong>CSS3 Gradient</strong> 分为<strong>线性渐变(linear)</strong>和<strong>径向渐变(radial)</strong>。由于不同的渲染引擎实现渐变的语法不同，这里我们只针对线性渐变的 W3C 标准语法来分析其用法，其余大家可以查阅相关资料。W3C 语法已经得到了 IE10+、Firefox19.0+、Chrome26.0+ 和 Opera12.1+等浏览器的支持。</p>
+<p>这一小节我们来说一下<strong>线性渐变：</strong></p>
+<p><a href="http://img.mukewang.com/54b72b2e0001500103790158.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/54b72b2e0001500103790158.jpg" alt="img"></a></p>
+<p><strong>参数：</strong></p>
+<p>第一个参数:<strong>指定渐变方向</strong>，可以用“<strong>角度</strong>”的关键词或<strong>“英文”</strong>来表示：</p>
+<p><a href="http://img.mukewang.com/542a25da00017e9406980223.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/542a25da00017e9406980223.jpg" alt="img"></a></p>
+<p>（单击图片可放大）</p>
+<p>第一个参数省略时，默认为“180deg”，等同于“to bottom”。</p>
+<p>第二个和第三个参数，<strong>表示颜色的起始点和结束点</strong>，可以有多个颜色值。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-image:linear-gradient(to left, red, orange,yellow,green,blue,indigo,violet);</span><br></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><a href="http://img.mukewang.com/54b72c080001611c04230192.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/54b72c080001611c04230192.jpg" alt="img"></a></p>
+<h2 id="CSS3边框-阴影-box-shadow（一）"><a href="#CSS3边框-阴影-box-shadow（一）" class="headerlink" title="CSS3边框 阴影 box-shadow（一）"></a>CSS3边框 阴影 box-shadow（一）</h2><p>box-shadow是向盒子添加阴影。支持添加一个或者多个。</p>
+<p>很简单的一段代码，就实现了投影效果，酷毙了。我们来看下语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩展半径] [阴影颜色] [投影方式];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">参数介绍：</span><br></pre></td></tr></table></figure>
+<p><a href="http://img.mukewang.com/54292d620001ffb107080250.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/54292d620001ffb107080250.jpg" alt="img"></a></p>
+<p>注意：inset 可以写在参数的第一个或最后一个，其它位置是无效的。</p>
+<p><strong>为元素设置外阴影：</strong></p>
+<p>示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.box_shadow&#123;</span><br><span class="line">  box-shadow:4px 2px 6px #333333; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">效果：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>为元素设置内阴影：</strong></p>
+<p>示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.box_shadow&#123;</span><br><span class="line">  box-shadow:4px 2px 6px #333333 inset; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">效果：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">添加多个阴影：</span><br></pre></td></tr></table></figure>
+<p>以上的语法的介绍，就这么简单，如果添加多个阴影，只需用逗号隔开即可。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.box_shadow&#123;</span><br><span class="line">    box-shadow:4px 2px 6px #f00, -4px -2px 6px #000, 0px 0px 12px 5px #33CC00 inset;</span><br><span class="line">&#125;</span><br><span class="line">效果：</span><br></pre></td></tr></table></figure>
+<p><a href="http://img.mukewang.com/52e21d210001356d01170116.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/52e21d210001356d01170116.jpg" alt="img"></a></p>
+<h2 id="CSS3颜色-颜色之RGBA"><a href="#CSS3颜色-颜色之RGBA" class="headerlink" title="CSS3颜色 颜色之RGBA"></a>CSS3颜色 颜色之RGBA</h2><p>RGB是一种色彩标准，是由红(R)、绿(G)、蓝(B)的变化以及相互叠加来得到各式各样的颜色。RGBA是在RGB的基础上增加了控制<strong>alpha</strong>透明度的参数。</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">color：rgba(R,G,B,A)</span><br></pre></td></tr></table></figure>
+<p>以上R、G、B三个参数，正整数值的取值范围为：0 - 255。百分数值的取值范围为：0.0% - 100.0%。超出范围的数值将被截至其最接近的取值极限。并非所有浏览器都支持使用百分数值。A为透明度参数，取值在0~1之间，不可为负值。</p>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-color:rgba(100,120,60,0.5);</span><br></pre></td></tr></table></figure>
+<h2 id="CSS3选择器-属性选择器"><a href="#CSS3选择器-属性选择器" class="headerlink" title="CSS3选择器 属性选择器"></a>CSS3选择器 属性选择器</h2><p><a href="http://img.mukewang.com/56653eba0001b07004610215.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/56653eba0001b07004610215.jpg" alt="img"></a></p>
+<p>(单击可放大)</p>
+<p> <strong>实例展示：</strong></p>
+<p><strong>html代码</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href=&quot;xxx.pdf&quot;&gt;我链接的是PDF文件&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;#&quot; class=&quot;icon&quot;&gt;我类名是icon&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;#&quot; title=&quot;我的title是more&quot;&gt;我的title是more&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>css代码</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a[class^=&quot;icon&quot;]&#123;</span><br><span class="line">  background: green;</span><br><span class="line">  color:#fff;</span><br><span class="line">&#125;</span><br><span class="line">a[href$=&quot;pdf&quot;]&#123;</span><br><span class="line">  background: orange;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br><span class="line">a[title*=&quot;more&quot;]&#123;</span><br><span class="line">  background: blue;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS3-结构性伪类选择器—not"><a href="#CSS3-结构性伪类选择器—not" class="headerlink" title="CSS3 结构性伪类选择器—not"></a>CSS3 结构性伪类选择器—not</h2><p><code>:not</code>选择器称为<strong>否定选择器</strong>，和jQuery中的:not选择器一模一样，<strong>可以选择除某个元素之外的所有元素</strong>。就拿form元素来说，比如说你想给表单中<strong>除submit按钮之外</strong>的input元素添加红色边框，<strong>CSS代码</strong>可以写成：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  margin: 20px auto;</span><br><span class="line">&#125;</span><br><span class="line">div &#123;</span><br><span class="line">  margin-bottom: 20px;</span><br><span class="line">&#125;</span><br><span class="line">input:not([type=&quot;submit&quot;])&#123;</span><br><span class="line">  border:1px solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>相关HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form action=&quot;#&quot;&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;name&quot;&gt;Text Input:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;John Smith&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;name&quot;&gt;Password Input:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;John Smith&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><strong><img src="http://img.mukewang.com/531eb2ca00014b5002370177.jpg" alt="img"></strong></p>
+<h2 id="CSS3-结构性伪类选择器—empty"><a href="#CSS3-结构性伪类选择器—empty" class="headerlink" title="CSS3 结构性伪类选择器—empty"></a>CSS3 结构性伪类选择器—empty</h2><p><code>:empty</code>选择器表示的就是空。用来选择没有任何内容的元素，这里没有内容指的是一点内容都没有，<strong>哪怕是一个空格</strong>。</p>
+<p>示例显示：</p>
+<p>比如说，你的文档中有三个段落p元素，你想把没有任何内容的P元素隐藏起来。我们就可以使用“:empty”选择器来控制。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">&lt;p&gt; &lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line"> background: orange;</span><br><span class="line"> min-height: 30px;</span><br><span class="line">&#125;</span><br><span class="line">p:empty &#123;</span><br><span class="line">  display: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><strong><img src="http://img.mukewang.com/531eb55b0001d7d401580126.jpg" alt="img"></strong></p>
+<h2 id="CSS3-结构性伪类选择器—target"><a href="#CSS3-结构性伪类选择器—target" class="headerlink" title="CSS3 结构性伪类选择器—target"></a>CSS3 结构性伪类选择器—target</h2><p><code>:target</code>选择器称为目标选择器，用来匹配文档(页面)的<strong>url的某个标志符的目标元素</strong>。我们先来上个例子，然后再做分析。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;h2&gt;&lt;a href=&quot;#brand&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">&lt;div class=&quot;menuSection&quot; id=&quot;brand&quot;&gt;</span><br><span class="line">    content for Brand</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.menuSection&#123;</span><br><span class="line">  display: none;</span><br><span class="line">&#125;</span><br><span class="line">:target&#123;/*这里的:target就是指id=&quot;brand&quot;的div对象*/</span><br><span class="line">  display:block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><a href="http://img.mukewang.com/53217ea30001103002230101.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/53217ea30001103002230101.jpg" alt="img"></a></p>
+<p><strong>分析：</strong></p>
+<p>1、具体来说，触发元素的URL中的标志符通常会包含一个<strong>#号</strong>，后面带有一个<strong>标志符名称</strong>，上面代码中是：<code>#brand</code></p>
+<p>2、：target就是用来匹配id为“brand”的元素（id=”brand”的元素）,上面代码中是那个div元素。</p>
+<p><strong>多个url（多个target）处理：</strong></p>
+<p>就像上面的例子，#brand与后面的id=”brand”是对应的，当同一个页面上有很多的url的时候你可以取不同的名字，只要#号后对的名称与id=””中的名称对应就可以了。<br>如下面例子：<br>html代码：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;h2&gt;&lt;a href=&quot;#brand&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">&lt;div class=&quot;menuSection&quot; id=&quot;brand&quot;&gt;</span><br><span class="line">  content for Brand</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;h2&gt;&lt;a href=&quot;#jake&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">&lt;div class=&quot;menuSection&quot; id=&quot;jake&quot;&gt;</span><br><span class="line"> content for jake</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;h2&gt;&lt;a href=&quot;#aron&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">&lt;div class=&quot;menuSection&quot; id=&quot;aron&quot;&gt;</span><br><span class="line">    content for aron</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>css代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#brand:target &#123;</span><br><span class="line">  background: orange;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br><span class="line">#jake:target &#123;</span><br><span class="line">  background: blue;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br><span class="line">#aron:target &#123;</span><br><span class="line">  background: red;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码可以对不同的target对象分别设置不的样式。</p>
+<h2 id="CSS3-first-of-type选择器"><a href="#CSS3-first-of-type选择器" class="headerlink" title="CSS3 first-of-type选择器"></a>CSS3 first-of-type选择器</h2><p>“:first-of-type”选择器类似于“:first-child”选择器，不同之处就是<strong>指定了元素的类型</strong>,其主要用来定位一个父元素下的某个类型的第一个子元素。</p>
+<p><strong>示例演示：</strong></p>
+<p>通过“:first-of-type”选择器，定位div容器中的第一个p元素（p不一定是容器中的第一个子元素），并设置其背景色为橙色。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;div&gt;我是一个块元素，我是.wrapper的第一个子元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落元素，我是不是.wrapper的第一个子元素，但是他的第一个段落元素&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落元素&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个块元素&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">  width: 500px;</span><br><span class="line">  margin: 20px auto;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br><span class="line">.wrapper &gt; div &#123;</span><br><span class="line">  background: green;</span><br><span class="line">&#125;</span><br><span class="line">.wrapper &gt; p &#123;</span><br><span class="line">  background: blue;</span><br><span class="line">&#125;</span><br><span class="line">/*我要改变第一个段落的背景为橙色*/</span><br><span class="line">.wrapper &gt; p:first-of-type &#123;</span><br><span class="line">  background: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>演示结果：</p>
+<p><img src="http://img.mukewang.com/532959820001ab6804700149.jpg" alt="img"></p>
+<h2 id="CSS3-nth-of-type-n-选择器"><a href="#CSS3-nth-of-type-n-选择器" class="headerlink" title="CSS3 nth-of-type(n)选择器"></a>CSS3 nth-of-type(n)选择器</h2><p>“<code>:nth-of-type(n)</code>”选择器和“<code>:nth-child(n)</code>”选择器非常类似，不同的是它只计算父元素中指定的某种类型的子元素。当某个元素中的子元素不单单是同一种类型的子元素时，使用“:nth-of-type(n)”选择器来定位于父元素中某种类型的子元素是非常方便和有用的。在“:nth-of-type(n)”选择器中的“n”和“:nth-child(n)”选择器中的“n”参数也一样，可以是具体的<strong>整数</strong>，也可以是<strong>表达式</strong>，还可以是<strong>关键词</strong>。</p>
+<p><strong>示例演示</strong></p>
+<p>通过“:nth-of-type(2n)”选择器，将容器“div.wrapper”中偶数段数的背景设置为橙色。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落元素&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.wrapper &gt; p:nth-of-type(2n)&#123;</span><br><span class="line">  background: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><img src="http://img.mukewang.com/532be1ed00010f5403290494.jpg" alt="img"></p>
+<h2 id="CSS3-nth-last-of-type-n-选择器"><a href="#CSS3-nth-last-of-type-n-选择器" class="headerlink" title="CSS3 nth-last-of-type(n)选择器"></a>CSS3 nth-last-of-type(n)选择器</h2><p>“<code>:nth-last-of-type(n)</code>”选择器和“<code>:nth-of-type(n)</code>”选择器是一样的，选择父元素中指定的某种子元素类型，但它的起始方向是从最后一个子元素开始，而且它的使用方法类似于上节中介绍的“<code>:nth-last-child(n)</code>”选择器一样。</p>
+<p><strong>示例演示</strong></p>
+<p>通过“:nth-last-of-type(n)”选择器将容器“div.wrapper”中的倒数第三个段落背景设置为橙色。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;p&gt;我是第一个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是第二个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是第三个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是第四个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是第五个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">  &lt;p&gt;我是第六个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是第七个段落&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.wrapper &gt; p:nth-last-of-type(3)&#123;</span><br><span class="line">  background: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><img src="http://img.mukewang.com/53295c5900015a5a02190200.jpg" alt="img"></p>
+<h2 id="CSS3-only-child选择器"><a href="#CSS3-only-child选择器" class="headerlink" title="CSS3 only-child选择器"></a>CSS3 only-child选择器</h2><p>“<code>:only-child</code>”选择器选择的是父元素中只有一个子元素，而且只有唯一的一个子元素。也就是说，匹配的元素的父元素中仅有一个子元素，而且是一个<strong>唯一的子元素</strong>。</p>
+<p><strong>示例演示</strong></p>
+<p>通过“:only-child”选择器，来控制仅有一个子元素的背景样式，为了更好的理解，我们这个示例通过对比的方式来向大家演示。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;post&quot;&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;post&quot;&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.post p &#123;</span><br><span class="line">  background: green;</span><br><span class="line">  color: #fff;</span><br><span class="line">  padding: 10px;</span><br><span class="line">&#125;</span><br><span class="line">.post p:only-child &#123;</span><br><span class="line">  background: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><img src="http://img.mukewang.com/53295d4a0001e07202260173.jpg" alt="img"></p>
+<h2 id="CSS3-only-of-type选择器"><a href="#CSS3-only-of-type选择器" class="headerlink" title="CSS3 only-of-type选择器"></a>CSS3 only-of-type选择器</h2><p><code>“:only-of-type”</code>选择器用来选择一个元素是它的父元素的唯一一个相同类型的子元素。这样说或许不太好理解，换一种说法。<code>“:only-of-type”</code>是表示一个元素他有很多个子元素，而其中只有一种类型的子元素是唯一的，使用“:only-of-type”选择器就可以选中这个元素中的唯一一个类型子元素。</p>
+<p><strong>示例演示</strong></p>
+<p>通过“:only-of-type”选择器来修改容器中仅有一个div元素的背景色为橙色。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div元素&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;div&gt;我是一个Div&lt;/div&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li&gt;我是一个列表项&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;p&gt;我是一个段落&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.wrapper &gt; div:only-of-type &#123;</span><br><span class="line">  background: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><img src="http://img.mukewang.com/53295deb000128d801980212.jpg" alt="img"></p>
+<h2 id="CSS3选择器-enabled选择器"><a href="#CSS3选择器-enabled选择器" class="headerlink" title="CSS3选择器 :enabled选择器"></a>CSS3选择器 :enabled选择器</h2><p>在Web的表单中，有些表单元素有可用（<strong>“:enabled”</strong>）和不可用（“<strong>:disabled</strong>”）状态，比如输入框，密码框，复选框等。在默认情况之下，这些表单元素都处在可用状态。那么我们可以通过伪选择器“<strong>:enabled</strong>”对这些表单元素设置样式。</p>
+<p><strong>示例演示</strong></p>
+<p>通过“:enabled”选择器，修改文本输入框的边框为2像素的红色边框，并设置它的背景为<strong>灰色</strong>。</p>
+<p><strong>HTML代码:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form action=&quot;#&quot;&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;name&quot;&gt;Text Input:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;可用输入框&quot;  /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">   &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;name&quot;&gt;Text Input:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;禁用输入框&quot;  disabled=&quot;disabled&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">  margin: 20px;</span><br><span class="line">&#125;</span><br><span class="line">input[type=&quot;text&quot;]:enabled &#123;</span><br><span class="line">  background: #ccc;</span><br><span class="line">  border: 2px solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果演示</strong></p>
+<p><img src="http://img.mukewang.com/5335299700015e3403000084.jpg" alt="img"></p>
+<h2 id="CSS3选择器-disabled选择器"><a href="#CSS3选择器-disabled选择器" class="headerlink" title="CSS3选择器 :disabled选择器"></a>CSS3选择器 :disabled选择器</h2><p>“<strong>:disabled</strong>”选择器刚好与“<strong>:enabled</strong>”选择器相反，用来选择不可用表单元素。要正常使用“:disabled”选择器，需要在表单元素的HTML中设置“disabled”属性。</p>
+<p><strong>示例演示</strong></p>
+<p>通过“<strong>:disabled</strong>”选择器，给不可用输入框设置明显的样式。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form action=&quot;#&quot;&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;我是可用输入框&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;我是不可用输入框&quot; disabled /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form &#123;</span><br><span class="line">  margin: 50px;</span><br><span class="line">&#125;</span><br><span class="line">div &#123;</span><br><span class="line">  margin-bottom: 20px;</span><br><span class="line">&#125;</span><br><span class="line">input &#123;</span><br><span class="line">  background: #fff;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  border: 1px solid orange;</span><br><span class="line">  border-radius: 3px;</span><br><span class="line">&#125;</span><br><span class="line">input[type=&quot;text&quot;]:disabled &#123;</span><br><span class="line">  background: rgba(0,0,0,.15);</span><br><span class="line">  border: 1px solid rgba(0,0,0,.15);</span><br><span class="line">  color: rgba(0,0,0,.15);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果演示：</strong></p>
+<p><img src="http://img.mukewang.com/53326c450001881402490139.jpg" alt="img"></p>
+<h2 id="CSS3选择器-checked选择器"><a href="#CSS3选择器-checked选择器" class="headerlink" title="CSS3选择器 :checked选择器"></a>CSS3选择器 :checked选择器</h2><p>在表单元素中，单选按钮和复选按钮都具有<strong>选中</strong>和<strong>未选中</strong>状态。（大家都知道，要覆写这两个按钮默认样式比较困难）。在CSS3中，我们可以通过状态选择器“:checked”配合其他标签实现<strong>自定义样式</strong>。而“<strong>:checked</strong>”表示的是选中状态。</p>
+<p><strong>示例演示：</strong></p>
+<p>通过“:checked”状态来自定义复选框效果。</p>
+<p><strong>HTML代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form action=&quot;#&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;checkbox&quot; checked=&quot;checked&quot; id=&quot;usename&quot; /&gt;&lt;span&gt;√&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;lable for=&quot;usename&quot;&gt;我是选中状态&lt;/lable&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;checkbox&quot;  id=&quot;usepwd&quot; /&gt;&lt;span&gt;√&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;label for=&quot;usepwd&quot;&gt;我是未选中状态&lt;/label&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form &#123;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  width: 300px;</span><br><span class="line">  margin: 30px auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.wrapper &#123;</span><br><span class="line">  margin-bottom: 10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 20px;</span><br><span class="line">  height: 20px;</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">  position: relative;</span><br><span class="line">  border: 2px solid orange;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box input &#123;</span><br><span class="line">  opacity: 0;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top:0;</span><br><span class="line">  left:0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box span &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: -10px;</span><br><span class="line">  right: 3px;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  font-family: Arial;</span><br><span class="line">  -webkit-transform: rotate(30deg);</span><br><span class="line">  transform: rotate(30deg);</span><br><span class="line">  color: orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input[type=&quot;checkbox&quot;] + span &#123;</span><br><span class="line">  opacity: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input[type=&quot;checkbox&quot;]:checked + span &#123;</span><br><span class="line">  opacity: 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果演示</p>
+<p><img src="http://img.mukewang.com/53326d1f0001b8a703280126.jpg" alt="img"></p>
+<h2 id="CSS3选择器-selection选择器"><a href="#CSS3选择器-selection选择器" class="headerlink" title="CSS3选择器 ::selection选择器"></a>CSS3选择器 ::selection选择器</h2><p>“<strong>::selection</strong>”伪元素是用来匹配<strong>突出显示</strong>的文本(用鼠标选择文本时的文本)。浏览器默认情况下，用鼠标选择网页文本是以“深蓝的背景，白色的字体”显示的，效果如下图所示：</p>
+<p><a href="http://img.mukewang.com/533e50910001bff808670219.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/533e50910001bff808670219.jpg" alt="img"></a></p>
+<p>从上图中可以看出，用鼠标选中“专注IT、互联网技术”、“纯干货、学以致用”、“没错、这是免费的”这三行文本中，默认显示样式为：蓝色背景、白色文本。</p>
+<p>有的时候设计要求,不使用上图那种浏览器默认的突出文本效果，需要一个与众不同的效果，此时“<strong>::selection</strong>”伪元素就非常的实用。不过在<strong>Firefox浏览器</strong>还需要添加前缀。</p>
+<p><strong>示例演示:</strong></p>
+<p>通过“::selection”选择器，将Web中选中的文本背景变成红色，文本变成绿色。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;“::selection”伪元素是用来匹配突出显示的文本。浏览器默认情况下，选择网站文本是深蓝的背景，白色的字体，&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">::-moz-selection &#123;</span><br><span class="line">  background: red;</span><br><span class="line">  color: green;</span><br><span class="line">&#125;</span><br><span class="line">::selection &#123;</span><br><span class="line">  background: red;</span><br><span class="line">  color: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果演示：</p>
+<p><a href="http://img.mukewang.com/533e52b80001973007260033.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/533e52b80001973007260033.jpg" alt="img"></a></p>
+<p>注意：</p>
+<p>1、IE9+、Opera、Google Chrome 以及 Safari 中支持 ::selection 选择器。</p>
+<p>2、Firefox 支持替代的 ::-moz-selection。</p>
+<h2 id="CSS3选择器-read-only选择器"><a href="#CSS3选择器-read-only选择器" class="headerlink" title="CSS3选择器 :read-only选择器"></a>CSS3选择器 :read-only选择器</h2><p>“<strong>:read-only</strong>”伪类选择器用来指定处于只读状态元素的样式。简单点理解就是，元素中设置了“<strong>readonly=’readonly’</strong>”</p>
+<p><strong>示例演示</strong></p>
+<p>通过“:read-only”选择器来设置地址文本框的样式。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form action=&quot;#&quot;&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;name&quot;&gt;姓名:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;大漠&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;address&quot;&gt;地址:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;address&quot; id=&quot;address&quot; placeholder=&quot;中国上海&quot; readonly=&quot;readonly&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  margin: 50px auto;</span><br><span class="line">&#125;</span><br><span class="line">form &gt; div &#123;</span><br><span class="line">  margin-bottom: 10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input[type=&quot;text&quot;]&#123;</span><br><span class="line">  border: 1px solid orange;</span><br><span class="line">  padding: 5px;</span><br><span class="line">  background: #fff;</span><br><span class="line">  border-radius: 5px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input[type=&quot;text&quot;]:-moz-read-only&#123;</span><br><span class="line">  border-color: #ccc;</span><br><span class="line">&#125;</span><br><span class="line">input[type=&quot;text&quot;]:read-only&#123;</span><br><span class="line">  border-color: #ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果演示</strong></p>
+<p><a href="http://img.mukewang.com/5445d7c30001e3fb03870139.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5445d7c30001e3fb03870139.jpg" alt="img"></a></p>
+<h2 id="CSS3选择器-read-write选择器"><a href="#CSS3选择器-read-write选择器" class="headerlink" title="CSS3选择器 :read-write选择器"></a>CSS3选择器 :read-write选择器</h2><p>“<strong>:read-write</strong>”选择器刚好与“<strong>:read-only</strong>”选择器<strong>相反</strong>，主要用来指定当元素处于<strong>非只读状态</strong>时的样式。</p>
+<p><strong>示例演示</strong></p>
+<p>使用“<strong>:read-write</strong>”选择器来设置不是只读控件的文本框样式。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form action=&quot;#&quot;&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;name&quot;&gt;姓名:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;name&quot; placeholder=&quot;大漠&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;label for=&quot;address&quot;&gt;地址:&lt;/label&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;address&quot; id=&quot;address&quot; placeholder=&quot;中国上海&quot; readonly=&quot;readonly&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">form &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  border: 1px solid #ccc;</span><br><span class="line">  margin: 50px auto;</span><br><span class="line">&#125;</span><br><span class="line">form &gt; div &#123;</span><br><span class="line">  margin-bottom: 10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input[type=&quot;text&quot;]&#123;</span><br><span class="line">  border: 1px solid orange;</span><br><span class="line">  padding: 5px;</span><br><span class="line">  background: #fff;</span><br><span class="line">  border-radius: 5px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input[type=&quot;text&quot;]:-moz-read-only&#123;</span><br><span class="line">  border-color: #ccc;</span><br><span class="line">&#125;</span><br><span class="line">input[type=&quot;text&quot;]:read-only&#123;</span><br><span class="line">  border-color: #ccc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">input[type=&quot;text&quot;]:-moz-read-write&#123;</span><br><span class="line">  border-color: #f36;</span><br><span class="line">&#125;</span><br><span class="line">input[type=&quot;text&quot;]:read-write&#123;</span><br><span class="line">  border-color: #f36;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果演示：</strong></p>
+<p><a href="http://img.mukewang.com/5445d97b0001665203980142.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5445d97b0001665203980142.jpg" alt="img"></a></p>
+<h2 id="CSS3选择器-before和-after"><a href="#CSS3选择器-before和-after" class="headerlink" title="CSS3选择器 ::before和::after"></a>CSS3选择器 ::before和::after</h2><p>::before和::after这两个主要用来给元素的前面或后面插入内容，这两个常和”content”配合使用，使用的场景最多的就是清除浮动。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.clearfix::before,</span><br><span class="line">.clearfix::after &#123;</span><br><span class="line">    content: &quot;.&quot;;</span><br><span class="line">    display: block;</span><br><span class="line">    height: 0;</span><br><span class="line">    visibility: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.clearfix:after &#123;clear: both;&#125;</span><br><span class="line">.clearfix &#123;zoom: 1;&#125;</span><br></pre></td></tr></table></figure>
+<p>当然可以利用他们制作出其他更好的效果，比如右侧中的阴影效果，也是通过这个来实现的。</p>
+<p>关键代码分析：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.effect::before, .effect::after&#123;</span><br><span class="line">    content:&quot;&quot;;</span><br><span class="line">    position:absolute;</span><br><span class="line">    z-index:-1;</span><br><span class="line">    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);</span><br><span class="line">    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);</span><br><span class="line">    box-shadow:0 0 20px rgba(0,0,0,0.8);</span><br><span class="line">    top:50%;</span><br><span class="line">    bottom:0;</span><br><span class="line">    left:10px;</span><br><span class="line">    right:10px;</span><br><span class="line">    -moz-border-radius:100px / 10px;</span><br><span class="line">    border-radius:100px / 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码作用在class名叫.effect上的div的前（before）后(after)都添加一个空元素，然后为这两个空元素添加阴影特效。</p>
+<h2 id="CSS3中的变形–原点-transform-origin"><a href="#CSS3中的变形–原点-transform-origin" class="headerlink" title="CSS3中的变形–原点 transform-origin"></a>CSS3中的变形–原点 transform-origin</h2><p>任何一个元素都有一个中心点，默认情况之下，其中心点是居于元素X轴和Y轴的50%处。如下图所示：</p>
+<p><img src="http://img.mukewang.com/53391e740001b03d03330333.jpg" alt="img"></p>
+<p>在没有重置transform-origin改变元素原点位置的情况下，CSS变形进行的旋转、位移、缩放，扭曲等操作都是<strong>以元素自己中心位置进行变形</strong>。但很多时候，我们可以通过transform-origin来对元素进行原点位置改变，使元素原点不在元素的中心位置，以达到需要的原点位置。</p>
+<p>transform-origin取值和元素设置背景中的background-position取值类似，如下表所示：</p>
+<p><img src="http://img.mukewang.com/53391ea500013e4706860384.jpg" alt="img"></p>
+<p><strong>示例展示：</strong></p>
+<p>通过transform-origin改变元素原点到左上角，然后进行顺时旋转45度。</p>
+<p><strong>HTML代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">  &lt;div&gt;原点在默认位置处&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;wrapper transform-origin&quot;&gt;</span><br><span class="line">  &lt;div&gt;原点重置到左上角&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  height: 300px;</span><br><span class="line">  float: left;</span><br><span class="line">  margin: 100px;</span><br><span class="line">  border: 2px dotted red;</span><br><span class="line">  line-height: 300px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.wrapper div &#123;</span><br><span class="line">  background: orange;</span><br><span class="line">  -webkit-transform: rotate(45deg);</span><br><span class="line">  transform: rotate(45deg);</span><br><span class="line">&#125;</span><br><span class="line">.transform-origin div &#123;</span><br><span class="line">  -webkit-transform-origin: left top;</span><br><span class="line">  transform-origin: left top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果：</strong></p>
+<p><strong><img src="http://img.mukewang.com/53391f030001eaa209440496.jpg" alt="img"></strong></p>
+<h2 id="CSS3中的动画–过渡属性-transition-property"><a href="#CSS3中的动画–过渡属性-transition-property" class="headerlink" title="CSS3中的动画–过渡属性 transition-property"></a>CSS3中的动画–过渡属性 transition-property</h2><p>早期在Web中要实现动画效果，都是依赖于JavaScript或Flash来完成。但在CSS3中新增加了一个新的模块transition，它可以通过一些简单的CSS事件来触发元素的外观变化，让效果显得更加细腻。简单点说，<strong>就是通过鼠标的单击、获得焦点，被点击或对元素任何改变中触发，并平滑地以动画效果改变CSS的属性值。</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">在CSS中创建简单的过渡效果可以从以下几个步骤来实现：</span><br><span class="line">第一，在默认样式中声明元素的初始状态样式；</span><br><span class="line">第二，声明过渡元素最终状态样式，比如悬浮状态；</span><br><span class="line">第三，在默认样式中通过添加过渡函数，添加一些不同的样式。</span><br></pre></td></tr></table></figure>
+<p>CSS3的过度transition属性是一个复合属性，主要包括以下几个子属性：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transition-property:指定过渡或动态模拟的CSS属性</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transition-duration:指定完成过渡所需的时间</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transition-timing-function:指定过渡函数</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">transition-delay:指定开始出现的延迟时间</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>先来看<strong>transition-property属性</strong></p>
+<p><strong>transition-property</strong>用来指定<strong>过渡动画</strong>的CSS属性名称，而这个过渡属性只有具备一个<strong>中点值的属性</strong>（需要产生动画的属性）才能具备过渡效果，其对应具有过渡的CSS属性主要有：</p>
+<p><a href="http://img.mukewang.com/5344eca300010a8005510421.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5344eca300010a8005510421.jpg" alt="img"></a></p>
+<p><strong>HTML:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background-color:red;</span><br><span class="line">  margin: 20px auto;</span><br><span class="line">  -webkit-transition: background-color .5s ease .1s;</span><br><span class="line">  transition: background-color .5s ease .1s;</span><br><span class="line">&#125;</span><br><span class="line">div:hover &#123;</span><br><span class="line">  background-color: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>演示结果:</strong></p>
+<p><strong>鼠标移入</strong></p>
+<p><strong><img src="http://img.mukewang.com/5344edf200019bde02130213.jpg" alt="img"></strong></p>
+<p><strong>鼠标移出</strong></p>
+<p><strong><img src="http://img.mukewang.com/5344ee0500018c1b02110213.jpg" alt="img"></strong></p>
+<p><strong>特别注意</strong>：当“transition-property”属性设置为<strong>all</strong>时，表示的是所有中点值的属性。</p>
+<p>用一个简单的例子来说明这个问题：</p>
+<p>假设你的初始状态设置了样式“width”,“height”,“background”,当你在终始状态都改变了这三个属性，那么<strong>all</strong>代表的就是“width”、“height”和“background”。如果你的终始状态只改变了“width”和“height”时，那么<strong>all</strong>代表的就是“width”和“height”。</p>
+<h2 id="CSS3中的动画–过渡函数-transition-timing-function"><a href="#CSS3中的动画–过渡函数-transition-timing-function" class="headerlink" title="CSS3中的动画–过渡函数 transition-timing-function"></a>CSS3中的动画–过渡函数 transition-timing-function</h2><p>transition-timing-function属性指的是过渡的“缓动函数”。主要用来指定浏览器的过渡速度，以及过渡期间的操作进展情况，其中要包括以下几种函数：</p>
+<p><a href="http://img.mukewang.com/5344f1320001481905640812.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5344f1320001481905640812.jpg" alt="img"></a></p>
+<p>(单击图片可放大)</p>
+<p><strong>案例展示：</strong></p>
+<p>在hover状态下，让容器从一个正方形慢慢过渡到一个圆形，而整个过渡是先加速再减速，也就是运用ease-in-out函数。</p>
+<p><strong>HTML代码:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>CSS代码:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background: red;</span><br><span class="line">  margin: 20px auto;</span><br><span class="line">  -webkit-transition-property: -webkit-border-radius;</span><br><span class="line">  transition-property: border-radius;</span><br><span class="line">  -webkit-transition-duration: .5s;</span><br><span class="line">  transition-duration: .5s;</span><br><span class="line">  -webkit-transition-timing-function: ease-in-out;</span><br><span class="line">  transition-timing-function: ease-in-out;</span><br><span class="line">  -webkit-transition-delay: .2s;</span><br><span class="line">  transition-delay: .2s;</span><br><span class="line">&#125;</span><br><span class="line">div:hover &#123;</span><br><span class="line">  border-radius: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>演示结果</p>
+<p><strong>鼠标移入：</strong></p>
+<p><img src="http://img.mukewang.com/5344f1890001488f02360221.jpg" alt="img"></p>
+<p><strong>鼠标移出：</strong></p>
+<p><img src="http://img.mukewang.com/5344f1920001d25102240230.jpg" alt="img"></p>
+<h2 id="CSS3中设置动画播放方向"><a href="#CSS3中设置动画播放方向" class="headerlink" title="CSS3中设置动画播放方向"></a>CSS3中设置动画播放方向</h2><p>animation-direction属性主要用来设置<strong>动画播放方向，</strong>其语法规则如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">animation-direction:normal | alternate [, normal | alternate]*</span><br></pre></td></tr></table></figure>
+<p>其主要有两个值：<strong>normal</strong>、<strong>alternate</strong></p>
+<p>1、<strong>normal</strong>是默认值，如果设置为normal时，动画的每次循环都是向前播放；</p>
+<p>2、另一个值是<strong>alternate</strong>，他的作用是，动画播放在<strong>第偶数次</strong>向前播放，<strong>第奇数次</strong>向反方向播放。</p>
+<p>例如：通过animation-direction属性，将move动画播放动画方向设置为alternate，代码为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">animation-direction:alternate;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：Chrome或Safari浏览器，需要加入-webkit-前缀！</strong></p>
+<h2 id="CSS3中设置动画的播放状态"><a href="#CSS3中设置动画的播放状态" class="headerlink" title="CSS3中设置动画的播放状态"></a>CSS3中设置动画的播放状态</h2><p>animation-play-state属性主要用来控制元素动画的<strong>播放状态</strong>。</p>
+<p><strong>参数：</strong></p>
+<p>其主要有两个值：<strong>running</strong>和<strong>paused</strong>。</p>
+<p>其中running是其默认值，主要作用就是类似于音乐播放器一样，可以通过paused将正在播放的动画停下来，也可以通过running将暂停的动画重新播放，这里的重新播放不一定是从元素动画的开始播放，而是从暂停的那个位置开始播放。另外如果暂停了动画的播放，元素的样式将回到最原始设置状态。</p>
+<p>例如，页面加载时，动画不播放。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">animation-play-state:paused;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS3中设置动画时间外属性"><a href="#CSS3中设置动画时间外属性" class="headerlink" title="CSS3中设置动画时间外属性"></a>CSS3中设置动画时间外属性</h2><p>animation-fill-mode属性定义在动画开始之前和结束之后发生的操作。主要具有四个属性值：<strong>none、forwards、backwords</strong>和<strong>both</strong>。其四个属性值对应效果如下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>属性值</strong></th>
+<th><strong>效果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>none</td>
+<td>默认值，表示动画将按预期进行和结束，在动画完成其最后一帧时，动画会反转到初始帧处</td>
+</tr>
+<tr>
+<td>forwards</td>
+<td>表示动画在结束后继续应用最后的关键帧的位置</td>
+</tr>
+<tr>
+<td>backwards</td>
+<td>会在向元素应用动画样式时迅速应用动画的初始帧</td>
+</tr>
+<tr>
+<td>both</td>
+<td>元素动画同时具有forwards和backwards效果</td>
+</tr>
+</tbody>
+</table>
+<p>在默认情况之下，动画不会影响它的关键帧之外的属性，使用animation-fill-mode属性可以修改动画的默认行为。简单的说就是告诉动画在第一关键帧上等待动画开始，或者在动画结束时停在最后一个关键帧上而不回到动画的第一帧上。或者同时具有这两个效果。</p>
+<p>例如：让动画停在最一帧处。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">animation-fill-mode:forwards;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS3-伸缩布局（一）"><a href="#CSS3-伸缩布局（一）" class="headerlink" title="CSS3 伸缩布局（一）"></a>CSS3 伸缩布局（一）</h2><p>CSS3引入了一种新的布局模式——<strong>Flexbox布局</strong>，即<strong>伸缩布局盒模型</strong>（Flexible Box），用来提供一个更加有效的方式制定、调整和分布一个容器里项目布局，即使它们的大小是未知或者动态的，这里简称为<strong>Flex</strong>。</p>
+<p>Flexbox布局常用于设计比较复杂的页面，可以轻松的实现屏幕和浏览器窗口大小发生变化时保持元素的相对位置和大小不变，同时减少了依赖于浮动布局实现元素位置的定义以及重置元素的大小。</p>
+<p>Flexbox布局在定义伸缩项目大小时伸缩容器会预留一些可用空间，让你可以调节伸缩项目的相对大小和位置。例如，你可以确保伸缩容器中的多余空间平均分配多个伸缩项目，当然，如果你的伸缩容器没有足够大的空间放置伸缩项目时，浏览器会根据一定的比例减少伸缩项目的大小，使其不溢出伸缩容器。综合而言，Flexbox布局功能主要具有以下几点：</p>
+<p>第一，屏幕和浏览器窗口大小发生改变也可以灵活调整布局；</p>
+<p>第二，可以指定伸缩项目沿着主轴或侧轴按比例分配额外空间（伸缩容器额外空间），从而调整伸缩项目的大小；</p>
+<p>第三，可以指定伸缩项目沿着主轴或侧轴将伸缩容器额外空间，分配到伸缩项目之前、之后或之间；</p>
+<p>第四，可以指定如何将垂直于元素布局轴的额外空间分布到该元素的周围；</p>
+<p>第五，可以控制元素在页面上的布局方向；</p>
+<p>第六，可以按照不同于文档对象模型（DOM）所指定排序方式对屏幕上的元素重新排序。也就是说可以在浏览器渲染中不按照文档流先后顺序重排伸缩项目顺序。</p>
+<p>Flexbox规范版本众多，浏览器对此语法支持度也各有不同，接下来的内容以最新语法版本为例向大家展示：</p>
+<p><strong>1.创建一个flex容器</strong></p>
+<p>任何一个flexbox布局的第一步是需要创建一个flex容器。为此给元素设置display属性的值为flex。在Safari浏览器中，你依然需要添加前缀-webkit，</p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; }</code></p>
+<p><strong>2.Flex项目显示</strong></p>
+<p>Flex项目是Flex容器的子元素。他们沿着主要轴和横轴定位。默认的是沿着水平轴排列一行。你可以通过flex-direction来改变主轴方向修改为column，其默认值是row。</p>
+<p><a href="http://img.mukewang.com/5365e24300018b8005570159.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365e24300018b8005570159.jpg" alt="img"></a></p>
+<p><strong>3.Flex项目列显示</strong></p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; }</code></p>
+<p><code>![img](http://img.mukewang.com/5365e2b300016b2405570509.jpg)</code></p>
+<p><strong>4.Flex项目移动到顶部</strong></p>
+<p>如何将flex项目移动到顶部，取决于主轴的方向。如果它是垂直的方向通过<strong>align-items</strong>设置；如果它是水平的方向通过<strong>justify-content</strong>设置。</p>
+<p><code>.flexcontainer{ -webkit-flex-direction: column; flex-direction: column; -webkit-justify-content: flex-start; justify-content: flex-start; }</code></p>
+<p><a href="http://img.mukewang.com/5365e694000180fd05570538.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365e694000180fd05570538.jpg" alt="img"></a></p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: row; flex-direction: row; -webkit-align-items: flex-start; align-items: flex-start; }</code></p>
+<p><a href="http://img.mukewang.com/5365e7160001b9e405570203.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365e7160001b9e405570203.jpg" alt="img"></a></p>
+<h2 id="CSS3-伸缩布局（二）"><a href="#CSS3-伸缩布局（二）" class="headerlink" title="CSS3 伸缩布局（二）"></a>CSS3 伸缩布局（二）</h2><p><strong>5.Flex项目移到左边</strong></p>
+<p>flex项目称动到左边或右边也取决于主轴的方向。如果flex-direction设置为row，设置justify-content控制方向；如果设置为column，设置align-items控制方向。</p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: row; flex-direction: row; -webkit-justify-content: flex-start; justify-content: flex-start; }</code></p>
+<p><a href="http://img.mukewang.com/5365e8f700012f8a05570207.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365e8f700012f8a05570207.jpg" alt="img"></a></p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; -webkit-align-items: flex-start; align-items: flex-start; }</code></p>
+<p><a href="http://img.mukewang.com/5365e9e00001fd9305570449.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365e9e00001fd9305570449.jpg" alt="img"></a></p>
+<p><strong>6.Flex项目移动右边</strong></p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: row; flex-direction: row; -webkit-justify-content: flex-end; justify-content: flex-end; }</code><a href="http://img.mukewang.com/5365ea440001835305570196.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365ea440001835305570196.jpg" alt="img"></a></p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; -webkit-align-items: flex-end; align-items: flex-end; }</code></p>
+<p><a href="http://img.mukewang.com/5365ebe9000199b107620445.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365ebe9000199b107620445.jpg" alt="img"></a></p>
+<p><strong>7.水平垂直居中</strong></p>
+<p>在Flexbox容器中制作水平垂直居中是微不足道的。设置justify-content或者align-items为<strong>center</strong>。另外根据主轴的方向设置flex-direction为row或column。</p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: row; flex-direction: row; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center; }</code></p>
+<p><a href="http://img.mukewang.com/5365ec680001868c07620314.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365ec680001868c07620314.jpg" alt="img"></a></p>
+<p><code>.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center; }</code></p>
+<p><a href="http://img.mukewang.com/5365ecee00016b0107630450.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365ecee00016b0107630450.jpg" alt="img"></a></p>
+<p><strong>8.Flex项目实现自动伸缩</strong></p>
+<p>您可以定义一个flex项目，如何相对于flex容器实现自动的伸缩。需要给每个flex项目设置flex属性设置需要伸缩的值。</p>
+<p><code>.bigitem{ -webkit-flex:200; flex:200; }  .smallitem{ -webkit-flex:100; flex:100; }</code></p>
+<p><a href="http://img.mukewang.com/5365ed860001a8a907620321.jpg" target="_blank" rel="noopener"><img src="http://img.mukewang.com/5365ed860001a8a907620321.jpg" alt="img"></a></p>
+<h2 id="media-queries——媒体类型（二）"><a href="#media-queries——媒体类型（二）" class="headerlink" title="media queries——媒体类型（二）"></a>media queries——媒体类型（二）</h2><p>在实际中媒体类型有近十种之多，实际之中常用的也就那么几种，不过媒体类型的引用方法也有多种，常见的有：<strong>link标签</strong>、<strong>@import</strong>和CSS3新增的<strong>@media</strong>几种：</p>
+<p><strong>link方法</strong></p>
+<p>link方法引入媒体类型其实就是在<link>标签引用样式的时候，通过link标签中的media属性来指定不同的媒体类型。如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; media=&quot;screen&quot; /&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;print.css&quot; media=&quot;print&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>@import方法</strong></p>
+<p>@import可以引用样式文件，同样也可以用来引用媒体类型。@import引入媒体类型主要有两种方式，一种是在样式中通过@import调用另一个样式文件；另一种方法是在<head></head>标签中的<style></style>中引入，但这种使用方法在IE6~7都不被支持，如样式文件中调用另一个样式文件时，就可以指定对应的媒体类型。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@importurl(reset.css) screen;   </span><br><span class="line">@importurl(print.css) print;</span><br></pre></td></tr></table></figure>
+<p>在<head>中的<style>标签中引入媒体类型方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    @importurl(style.css) all;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>@media方法</strong></p>
+<p>@media是CSS3中新引进的一个特性，被称为媒体查询。在页面中也可以通过这个属性来引入媒体类型。@media引入媒体类型和@import有点类似也具有两方式。</p>
+<p>（1）在样式文件中引用媒体类型：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@media screen &#123;</span><br><span class="line">   选择器&#123;/*你的样式代码写在这里…*/&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（2）使用@media引入媒体类型的方式是在<head>标签中的<style>中引用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    @media screen&#123;</span><br><span class="line">    选择器&#123;/*你的样式代码写在这里…*/&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+<p>了解完这些概念性的东西，同学们最想知道的是Media Queries要如何使用？下面我们一起来探讨其使用方法：</p>
+<p>Media Queries能在不同的条件下使用不同的样式，使页面在不同在终端设备下达到不同的渲染效果。前面简单的介绍了Media Queries如何引用到项目中，但Media Queries有其自己的使用规则。具体来说,Media Queries的使用方法如下。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@media 媒体类型and （媒体特性）&#123;你的样式&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：使用Media Queries必须要使用“@media”开头，然后指定媒体类型（也可以称为设备类型），随后是指定媒体特性（也可以称之为设备特性）。媒体特性的书写方式和样式的书写方式非常相似，主要分为两个部分，第一个部分指的是媒体特性，第二部分为媒体特性所指定的值，而且这两个部分之间使用冒号分隔。例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(max-width: 480px)</span><br></pre></td></tr></table></figure>
+<p>从前面表中可以得知，主要有十种媒体类型和13种媒体特性，将其组合就类似于不同的CSS集合。但与CSS属性不同的是，媒体特性是通过min/max来表示大于等于或小于做为逻辑判断，而不是使用小于（&lt;）和大于（&gt;）这样的符号来判断。接下来一起来看看Media Queries在实际项目中常用的方式。</p>
+<p><strong>1. 最大宽度max-width</strong></p>
+<p>“max-width”是媒体特性中最常用的一个特性，其意思是指媒体类型小于或等于指定的宽度时，样式生效。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@media screen and (max-width:480px)&#123;</span><br><span class="line"> .ads &#123;</span><br><span class="line">   display:none;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面表示的是：当屏幕小于或等于480px时,页面中的广告区块（.ads）都将被隐藏。</p>
+<h4 id="2-最小宽度min-width"><a href="#2-最小宽度min-width" class="headerlink" title="2.最小宽度min-width"></a><strong>2.最小宽度min-width</strong></h4><p>“min-width”与“max-width”相反，指的是媒体类型大于或等于指定宽度时，样式生效。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@media screen and (min-width:900px)&#123;</span><br><span class="line">.wrapper&#123;width: 980px;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面表示的是：当屏幕大于或等于900px时，容器“.wrapper”的宽度为980px。</p>
+<h4 id="3-多个媒体特性使用"><a href="#3-多个媒体特性使用" class="headerlink" title="3.多个媒体特性使用"></a><strong>3.多个媒体特性使用</strong></h4><p>Media Queries可以使用关键词<strong>“and</strong>“将多个媒体特性结合在一起。也就是说，一个Media Query中可以包含0到多个表达式，表达式又可以包含0到多个关键字，以及一种媒体类型。</p>
+<p>当屏幕在600px~900px之间时，body的背景色渲染为“#f5f5f5”，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@media screen and (min-width:600px) and (max-width:900px)&#123;</span><br><span class="line">  body &#123;background-color:#f5f5f5;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-设备屏幕的输出宽度Device-Width"><a href="#4-设备屏幕的输出宽度Device-Width" class="headerlink" title="4.设备屏幕的输出宽度Device Width"></a><strong>4.设备屏幕的输出宽度Device Width</strong></h4><p>在智能设备上，例如iPhone、iPad等，还可以根据屏幕设备的尺寸来设置相应的样式（或者调用相应的样式文件）。同样的，对于屏幕设备同样可以使用“min/max”对应参数，如“min-device-width”或者“max-device-width”。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (max-device-width:480px)&quot; href=&quot;iphone.css&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>上面的代码指的是“iphone.css”样式适用于最大设备宽度为480px，比如说iPhone上的显示，这里的“max-device-width”所指的是设备的实际分辨率，也就是指可视面积分辨率。</p>
+<h4 id="5-not关键词"><a href="#5-not关键词" class="headerlink" title="5. not关键词"></a><strong>5. not关键词</strong></h4><p>使用关键词“not”是用来排除某种制定的媒体类型，也就是用来排除符合表达式的设备。换句话说，not关键词表示对后面的表达式执行取反操作，如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@media not print and (max-width: 1200px)&#123;样式代码&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码表示的是：样式代码将被使用在除打印设备和设备宽度小于1200px下所有设备中。</p>
+<h4 id="6-only关键词"><a href="#6-only关键词" class="headerlink" title="6.only关键词"></a><strong>6.only关键词</strong></h4><p>only用来指定某种特定的媒体类型，可以用来排除不支持媒体查询的浏览器。其实only很多时候是用来对那些不支持Media Query但却支持Media Type的设备隐藏样式表的。其主要有：支持媒体特性的设备，正常调用样式，此时就当only不存在；表示不支持媒体特性但又支持媒体类型的设备，这样就会不读样式，因为其先会读取only而不是screen；另外不支持Media Queries的浏览器，不论是否支持only，样式都不会被采用。如</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;linkrel=&quot;stylesheet&quot; media=&quot;only screen and (max-device-width:240px)&quot; href=&quot;android240.css&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>在Media Query中如果没有明确指定Media Type，那么其默认为all，如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;linkrel=&quot;stylesheet&quot; media=&quot;(min-width:701px) and (max-width:900px)&quot; href=&quot;mediu.css&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>另外在样式中，还可以使用多条语句来将同一个样式应用于不同的媒体类型和媒体特性中，指定方式如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;linkrel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; media=&quot;handheld and (max-width:480px), screen and (min-width:960px)&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>上面代码中style.css样式被用在宽度小于或等于480px的手持设备上，或者被用于屏幕宽度大于或等于960px的设备上。</p>
+<p>到目前为止，CSS3 Media Queries得到了众多浏览器支持，除了<strong>IE6-8</strong>浏览器不支持之外，在所有现代浏览器中都可以完美支持。还有一个与众不同的时，<strong>Media Queries在其他浏览器中不要像其他CSS3属性一样在不同的浏览器中添加前缀</strong>。</p>
+<h2 id="Responsive布局技巧"><a href="#Responsive布局技巧" class="headerlink" title="Responsive布局技巧"></a>Responsive布局技巧</h2><p>通过上面的介绍，大家对响应式设计有了一定的了解，但在实际制作中还是有一些布局技巧的：</p>
+<p><strong>在Responsive布局中，可以毫无保留的丢弃：</strong></p>
+<p>第一， 尽量少用无关紧要的div；</p>
+<p>第二，不要使用内联元素（inline）；</p>
+<p>第三，尽量少用JS或flash；</p>
+<p>第四，丢弃没用的绝对定位和浮动样式；</p>
+<p>第五，摒弃任何冗余结构和不使用100%设置。</p>
+<p>有舍才有得，丢弃了一些对Responsive有影响的东东，那么<strong>有哪些东东能帮助Responsive确定更好的布局呢</strong>？</p>
+<p>第一，使用HTML5 Doctype和相关指南；</p>
+<p>第二，重置好你的样式（reset.css）；</p>
+<p>第三，一个简单的有语义的核心布局；</p>
+<p>第四，给重要的网页元素使用简单的技巧，比如导航菜单之类元素。</p>
+<p>使用这些技巧，无非是为了保持你的HTML简单干净，而且在你的页面布局中的关键部分（元素）不要过分的依赖现代技巧来实现，比如说CSS3特效或者JS脚本。</p>
+<p>说了这么多，怎么样的布局或者说HTML结构才是简单干净的呢？这里教大家一个<strong>快速测试</strong>的方法。你首先禁掉你页面中所有的样式（以及与样式相关的信息），在浏览器中打开，如果你的内容排列有序，方便阅读，那么你的这个结构不会差到哪里去。</p>
+<h2 id="Responsive设计——meta标签"><a href="#Responsive设计——meta标签" class="headerlink" title="Responsive设计——meta标签"></a>Responsive设计——meta标签</h2><p>最后还有一个不可或缺的东东，那就是meta标签，可以说，在响应式设计中如果没有这个meta标签，你就是蹩脚的，响应式设计就是空谈。</p>
+<p>个meta标签被称为可视区域meta标签，其使用方法如下。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name=”viewport” content=”” /&gt;</span><br></pre></td></tr></table></figure>
+<p>在content属性中主要包括以下属性值，用来处理可视区域。</p>
+<p><a href="http://img.mukewang.com/53660f2c0001190005270386.jpg"><img src="http://img.mukewang.com/53660f2c0001190005270386.jpg" alt="img"></a></p>
+<p>在实际项目中，为了让Responsive设计在智能设备中能显示正常，也就是浏览Web页面适应屏幕的大小，显示在屏幕上，可以通过这个可视区域的<strong>meta标签</strong>进行重置，告诉他使用设备的宽度为视图的宽度，也就是说禁止其默认的自适应页面的效果，具体设置如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;meta name=”viewport” content=”width=device-width,initial-scale=1.0” /&gt;</span><br></pre></td></tr></table></figure>
+<p>另外一点，由于Responsive设计是结合CSS3的Media Queries属性，才能尽显Responsive设计风格，但大家都清楚，<strong>在IE6-8中完全是不支持CSS3 Media</strong>。下面我们一起来看看CSS3 Meida Queries在标准设备上的运用，大家可以把这些样式加到你的样式文件中，或者单独创建一个名为“responsive.css”文件，并在相应的条件中写上你的样式，让他适合你的设计需求。</p>
+<p>脚本下载地址： </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">media-queries.js(http://code.google.com/p/css3-mediaqueries-js/)      </span><br><span class="line"></span><br><span class="line"> respond.js(https://github.com/scottjehl/Respond)</span><br><span class="line"></span><br><span class="line"> &lt;!—[if lt IE9]&gt;</span><br><span class="line">      &lt;scriptsrc=http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js&gt;&lt;/script&gt;</span><br><span class="line"> &lt;![endif]&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="自由缩放属性resize"><a href="#自由缩放属性resize" class="headerlink" title="自由缩放属性resize"></a>自由缩放属性resize</h2><p>为了增强用户体验，CSS3增加了很多新的属性，其中<strong>resize</strong>就是一个重要的属性，它允许用户通过拖动的方式来修改元素的尺寸来改变元素的大小。到目前为止，可以使用overflow属性的任何容器元素。</p>
+<p>在此之前，Web设计师为了要实现这样具有拖动效果的UI，使用大量的脚本代码才能实现，这样费时费力，效率极低。</p>
+<p>resize属性主要是用来改变元素尺寸大小的，其主要目的是增强用户体验。但使用方法却是极其的简单，先从其语法入手。</p>
+<p><code>resize: none | both | horizontal | vertical | inherit</code></p>
+<p><strong>取值说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>属性值</strong></th>
+<th><strong>取值说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>none</td>
+<td>用户不能拖动元素修改尺寸大小。</td>
+</tr>
+<tr>
+<td>both</td>
+<td>用户可以拖动元素，同时修改元素的宽度和高度</td>
+</tr>
+<tr>
+<td>horizontal</td>
+<td>用户可以拖动元素，仅可以修改元素的宽度，但不能修改元素的高度。</td>
+</tr>
+<tr>
+<td>vertical</td>
+<td>用户可以拖动元素，仅可以修改元素的高度，但不能修改元素的宽度。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>继承父元素的resize属性值。</td>
+</tr>
+</tbody>
+</table>
+<p>例如：通过resize属性，让文本域可以沿水平方向拖大。代码为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">textarea &#123;</span><br><span class="line">  -webkit-resize: horizontal;</span><br><span class="line">  -moz-resize: horizontal;</span><br><span class="line">  -o-resize: horizontal;</span><br><span class="line">  -ms-resize: horizontal;</span><br><span class="line">  resize: horizontal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS3外轮廓属性"><a href="#CSS3外轮廓属性" class="headerlink" title="CSS3外轮廓属性"></a>CSS3外轮廓属性</h2><p>外轮廓outline在页面中呈现的效果和边框border呈现的效果极其相似，但和元素边框border完全不同，外轮廓线不占用网页布局空间，不一定是矩形，外轮廓是属于一种动态样式，只有元素获取到焦点或者被激活时呈现。</p>
+<p>outline属性早在CSS2中就出现了，主要是用来在元素周围绘制一条轮廓线，可以起到突出元素的作用。但是并未得到各主流浏览器的广泛支持，在CSS3中对outline作了一定的扩展，在以前的基础上增加新特性。outline属性的基本语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">outline: ［outline-color］ || [outline-style] || [outline-width] || [outline-offset] || inherit</span><br></pre></td></tr></table></figure>
+<p>从语法中可以看出outline和border边框属性的使用方法极其类似。outline-color相当于border-color、outline-style相当于border-style，而outline-width相当于border-width，只不过CSS3给outline属性增加了一个<code>outline-offset</code>属性，其取值说明如下。</p>
+<table>
+<thead>
+<tr>
+<th><strong>属性值</strong></th>
+<th><strong>属性值说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>outline-color</td>
+<td>定义轮廓线的颜色，属性值为CSS中定义的颜色值。在实际应用中，可以将此参数省略，省略时此参数的默认值为黑色。</td>
+</tr>
+<tr>
+<td>outline-style</td>
+<td>定义轮廓线的样式，属性为CSS中定义线的样式。在实际应用中，可以将此参数省略，省略时此参数的默认值为none，省略后不对该轮廓线进行任何绘制。</td>
+</tr>
+<tr>
+<td>outline-width</td>
+<td>定义轮廓线的宽度，属性值可以为一个宽度值。在实际应用中，可以将此参数省略，省略时此参数的默认值为medium，表示绘制中等宽度的轮廓线。</td>
+</tr>
+<tr>
+<td>outline-offset</td>
+<td>定义轮廓边框的偏移位置的数值，此值可以取负数值。当此参数的值为正数值，表示轮廓边框向外偏离多少个像素；当此参数的值为负数值，表示轮廓边框向内偏移多少个像素。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>元素继承父元素的outline效果。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CSS生成内容"><a href="#CSS生成内容" class="headerlink" title="CSS生成内容"></a>CSS生成内容</h2><p>在Web中插入内容，在CSS2.1时代依靠的是JavaScript来实现。但进入CSS3进代之后我们可以通过CSS3的伪类“:before”，“:after”和CSS3的伪元素“::before”、“::after”来实现，其关键是依靠CSS3中的“content”属性来实现。不过这个属性对于<strong>img</strong>和<strong>input</strong>元素不起作用。</p>
+<p>content配合CSS的伪类或者伪元素，一般可以做以下四件事情：</p>
+<table>
+<thead>
+<tr>
+<th><strong>功能</strong></th>
+<th><strong>功能说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>none</td>
+<td>不生成任何内容</td>
+</tr>
+<tr>
+<td>attr</td>
+<td>插入标签属性值</td>
+</tr>
+<tr>
+<td>url</td>
+<td>使用指定的绝对或相对地址插入一个外部资源（图像，声频，视频或浏览器支持的其他任何资源）</td>
+</tr>
+<tr>
+<td>string</td>
+<td>插入字符串</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实例展示：</strong></p>
+<p>在CSS中有一种清除浮动的方法叫“clearfix”。而这个“clearfix”方法就中就使用了“content”，只不过只是在这里插入了一个空格。如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.clearfix:before,</span><br><span class="line"></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line"></span><br><span class="line">       content:””;</span><br><span class="line"></span><br><span class="line">       display:table;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line"></span><br><span class="line">       clear:both;</span><br><span class="line"></span><br><span class="line">       overflow:hidden;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这个示例是最常见的，也是最简单的，我们再来看一个插入元素属性值的方法。</p>
+<p>假设我们有一个元素：</p>
+<p><a href="##" title="我是一个title属性值，我插在你的后面">我是元素</a></p>
+<p>可以通过”:after”和”content:attr(title)”将元素的”title”值插入到元素内容“我是元素”之后：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a:after &#123;</span><br><span class="line"></span><br><span class="line">  content:attr(title);</span><br><span class="line"></span><br><span class="line">       color:#f00;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p> <a href="http://img.mukewang.com/5365fae20001649403560028.jpg"><img src="http://img.mukewang.com/5365fae20001649403560028.jpg" alt="img"></a></p>
+</style></head></p>
+        </section>
+    </article>
+    
+        <!-- disqus 评论框 start -->
+        <div class="comment">
+            <div id="disqus_thread" class="disqus-thread">
+              <i>加载评论框需要翻墙</i>
+            </div>
+        </div>
+        <!-- disqus 评论框 end -->
+    
+    
+        <!-- livere 评论框 start -->
+        <div class="comment">
+            <div id="lv-container" data-id="city" data-uid="your_livere_uid"></div>
+        </div>
+        <!-- livere 评论框 end -->
+        
+  </div>
+  <aside>
+    
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#布局"><span class="toc-number">1.</span> <span class="toc-text">布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮动"><span class="toc-number">2.</span> <span class="toc-text">浮动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒模型"><span class="toc-number">3.</span> <span class="toc-text">盒模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BFC"><span class="toc-number">4.</span> <span class="toc-text">BFC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先级："><span class="toc-number">5.</span> <span class="toc-text">优先级：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#溢出文字隐藏："><span class="toc-number">6.</span> <span class="toc-text">溢出文字隐藏：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#img"><span class="toc-number">6.1.</span> <span class="toc-text">img</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字与字体-嵌入字体-font-face"><span class="toc-number">7.</span> <span class="toc-text">字与字体 嵌入字体@font-face</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3文字与字体-文本阴影text-shadow"><span class="toc-number">8.</span> <span class="toc-text">CSS3文字与字体 文本阴影text-shadow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3背景-background-origin"><span class="toc-number">9.</span> <span class="toc-text">CSS3背景 background-origin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3背景-background-clip"><span class="toc-number">10.</span> <span class="toc-text">CSS3背景 background-clip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3背景-background-size"><span class="toc-number">11.</span> <span class="toc-text">CSS3背景 background-size</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3背景-多背景-backgrounds"><span class="toc-number">12.</span> <span class="toc-text">CSS3背景 多背景 backgrounds</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3颜色-渐变色彩"><span class="toc-number">13.</span> <span class="toc-text">CSS3颜色 渐变色彩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3边框-阴影-box-shadow（一）"><span class="toc-number">14.</span> <span class="toc-text">CSS3边框 阴影 box-shadow（一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3颜色-颜色之RGBA"><span class="toc-number">15.</span> <span class="toc-text">CSS3颜色 颜色之RGBA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-属性选择器"><span class="toc-number">16.</span> <span class="toc-text">CSS3选择器 属性选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-结构性伪类选择器—not"><span class="toc-number">17.</span> <span class="toc-text">CSS3 结构性伪类选择器—not</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-结构性伪类选择器—empty"><span class="toc-number">18.</span> <span class="toc-text">CSS3 结构性伪类选择器—empty</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-结构性伪类选择器—target"><span class="toc-number">19.</span> <span class="toc-text">CSS3 结构性伪类选择器—target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-first-of-type选择器"><span class="toc-number">20.</span> <span class="toc-text">CSS3 first-of-type选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-nth-of-type-n-选择器"><span class="toc-number">21.</span> <span class="toc-text">CSS3 nth-of-type(n)选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-nth-last-of-type-n-选择器"><span class="toc-number">22.</span> <span class="toc-text">CSS3 nth-last-of-type(n)选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-only-child选择器"><span class="toc-number">23.</span> <span class="toc-text">CSS3 only-child选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-only-of-type选择器"><span class="toc-number">24.</span> <span class="toc-text">CSS3 only-of-type选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-enabled选择器"><span class="toc-number">25.</span> <span class="toc-text">CSS3选择器 :enabled选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-disabled选择器"><span class="toc-number">26.</span> <span class="toc-text">CSS3选择器 :disabled选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-checked选择器"><span class="toc-number">27.</span> <span class="toc-text">CSS3选择器 :checked选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-selection选择器"><span class="toc-number">28.</span> <span class="toc-text">CSS3选择器 ::selection选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-read-only选择器"><span class="toc-number">29.</span> <span class="toc-text">CSS3选择器 :read-only选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-read-write选择器"><span class="toc-number">30.</span> <span class="toc-text">CSS3选择器 :read-write选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3选择器-before和-after"><span class="toc-number">31.</span> <span class="toc-text">CSS3选择器 ::before和::after</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3中的变形–原点-transform-origin"><span class="toc-number">32.</span> <span class="toc-text">CSS3中的变形–原点 transform-origin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3中的动画–过渡属性-transition-property"><span class="toc-number">33.</span> <span class="toc-text">CSS3中的动画–过渡属性 transition-property</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3中的动画–过渡函数-transition-timing-function"><span class="toc-number">34.</span> <span class="toc-text">CSS3中的动画–过渡函数 transition-timing-function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3中设置动画播放方向"><span class="toc-number">35.</span> <span class="toc-text">CSS3中设置动画播放方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3中设置动画的播放状态"><span class="toc-number">36.</span> <span class="toc-text">CSS3中设置动画的播放状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3中设置动画时间外属性"><span class="toc-number">37.</span> <span class="toc-text">CSS3中设置动画时间外属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-伸缩布局（一）"><span class="toc-number">38.</span> <span class="toc-text">CSS3 伸缩布局（一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-伸缩布局（二）"><span class="toc-number">39.</span> <span class="toc-text">CSS3 伸缩布局（二）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#media-queries——媒体类型（二）"><span class="toc-number">40.</span> <span class="toc-text">media queries——媒体类型（二）</span></a></li></ol>
+        </div>
+    </div>
+    
+  </aside>
+</main>
+
+<!-- disqus 公共JS代码 -->
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = "your_disqus_shortname";
+  var disqus_identifier = "http://fwh97.com/2018/09/06/css/";
+  var disqus_url = "http://fwh97.com/2018/09/06/css/";
+
+  isAgent(getDisqus)
+
+  // determine user agent in China
+  function isAgent(cb) {
+    var url = '//graph.facebook.com/feed?callback=h';
+    var xhr = new XMLHttpRequest();
+    var called = false;
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      called = true;
+      cb(true);
+      }
+    };
+    xhr.send();
+    // timeout 1s, this facebook API is very fast.
+    setTimeout(function() {
+      if (!called) {
+      xhr.abort();
+      cb(false)
+      }
+    }, 1000);
+  }
+
+  function getDisqus(isAgent) {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; 
+    dsq.async = true
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq)
+  }
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+<script type="text/javascript">
+  (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') { return; }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2018 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/lib/in-view.min.js"></script>
+<script src="/lib/lodash.min.js"></script>
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
+
+  document.body.addEventListener('touchstart', function(){});
+  
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
+
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
+
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
+
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
+
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
+
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+<script src="/lib/jquery.fancybox.min.js"></script>
+
+
+</body>
+</html>

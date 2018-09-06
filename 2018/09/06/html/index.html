@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="前端学习历程">
+  <meta name="keywords" content="">
+  
+    <link rel="icon" href="/favicon.ico">
+  
+    
+  <title>html5 | 个人博客</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>个人博客</span>
+    </a>
+    <ul class="right-header">
+      
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>html5</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年09月06日</time>
+            
+            
+          </div>
+          <h3 id="全局属性：对于任何一个标签都可以使用"><a href="#全局属性：对于任何一个标签都可以使用" class="headerlink" title="全局属性：对于任何一个标签都可以使用"></a>全局属性：对于任何一个标签都可以使用</h3><p>1、data-yourvalue——自定义属性</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">例子：data-type（yourvalue为你想定义数据的名字）</span><br></pre></td></tr></table></figure>
+<p> 2、hidden——可对加上该属性的元素隐藏 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">例子：&lt;label hidden&gt;不可见&lt;/label&gt;</span><br></pre></td></tr></table></figure>
+<p>3、Spellcheck——对输入内容进行语法测错 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">例子：&lt;textarea tabindex=&quot;2&quot; spellcheck=&quot;true&quot; cols=&quot;60&quot; rows=&quot;5&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>4、tabindex——按下tab键后，接下去的顺序  例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;span&gt;邮件&lt;\span&gt;&lt;input tabindex=&quot;2&quot;/&gt; 表示按两下Tab键后，光标会落在对应的 tabindex=2 的这个元素上</span><br></pre></td></tr></table></figure>
+<p>5、contenteditable——使有该属性的元素可编辑</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">例子：&lt;p contenteditable=&quot;true&quot;&gt;请你留言&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p> 6、designMode——一个jsp属性，可以使整个页面都可编辑 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">例子：&lt;script&gt; window.document.designMode=&apos;off&apos;;//把off改成on就可以生效&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="页面窗口"><a href="#页面窗口" class="headerlink" title="页面窗口"></a>页面窗口</h4><p><base target="_blank">   把所有的连接 都默认添加 target=”_blank” –&gt;  新建窗口进行</p>
+<p>target=”_self”&gt;  当前页面窗口进行跳转</p>
+<h2 id="常用新标签"><a href="#常用新标签" class="headerlink" title="常用新标签"></a>常用新标签</h2><p> w3c  手册中文官网     :   <a href="http://w3school.com.cn/" target="_blank" rel="noopener">http://w3school.com.cn/</a></p>
+<ul>
+<li><p>header：定义文档的页眉 头部</p>
+</li>
+<li><p>nav：定义导航链接的部分</p>
+</li>
+<li><p>footer：定义文档或节的页脚 底部</p>
+</li>
+<li><p>article：定义文章。</p>
+</li>
+<li><p>section：定义文档中的节（section、区段）</p>
+</li>
+<li><p>aside：定义其所处内容之外的内容 侧边</p>
+</li>
+<li><p><code>&lt;figure&gt;</code> —–标记定义<strong>一组媒体内容以及它们的标题</strong></p>
+</li>
+<li><p><code>&lt;figcaption&gt;</code> —–标记定义<figure>元素的标题</figure></p>
+</li>
+<li><p><code>&lt;dialog&gt;</code> —–标记定义<strong>一个对话框（会话框）类似微信</strong> </p>
+</li>
+<li><p>datalist   标签定义选项列表。请与 input 元素配合使用该元素</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"请输入明星"</span> <span class="attr">list</span>=<span class="string">"star"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"star"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"刘德华"</span>&gt;</span>刘德华<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"刘若英"</span>&gt;</span>刘若英<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"刘晓庆"</span>&gt;</span>刘晓庆<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"戚薇"</span>&gt;</span>戚薇<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"戚继光"</span>&gt;</span>戚继光<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fieldset 元素可将表单内的相关元素分组，打包      legend 搭配使用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">legend</span>&gt;</span>用户登录<span class="tag">&lt;/<span class="name">legend</span>&gt;</span>  标题</span><br><span class="line">    		用户名: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    		密　码: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="新增的input-type属性值："><a href="#新增的input-type属性值：" class="headerlink" title="新增的input type属性值："></a>新增的input type属性值：</h2><table>
+<thead>
+<tr>
+<th><strong>类型<em>**</em></strong></th>
+<th><strong>使用示例<em>**</em></strong></th>
+<th><strong>含义<em>**</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>email<em>**</em></strong></td>
+<td><input type="email"></td>
+<td>输入邮箱格式</td>
+</tr>
+<tr>
+<td><strong>tel<em>**</em></strong></td>
+<td><input type="tel"></td>
+<td>输入手机号码格式</td>
+</tr>
+<tr>
+<td><strong>url<em>**</em></strong></td>
+<td><input type="url"></td>
+<td>输入url格式</td>
+</tr>
+<tr>
+<td><strong>number<em>**</em></strong></td>
+<td><input type="number"></td>
+<td>输入数字格式</td>
+</tr>
+<tr>
+<td><strong>search<em>**</em></strong></td>
+<td><input type="search"></td>
+<td>搜索框（体现语义化）</td>
+</tr>
+<tr>
+<td><strong>range<em>**</em></strong></td>
+<td><input type="range"></td>
+<td>自由拖动滑块</td>
+</tr>
+<tr>
+<td><strong>time<em>**</em></strong></td>
+<td><input type="time"></td>
+<td>小时分钟</td>
+</tr>
+<tr>
+<td><strong>date<em>**</em></strong></td>
+<td><input type="date"></td>
+<td>年月日</td>
+</tr>
+<tr>
+<td><strong>datetime<em>**</em></strong></td>
+<td><input type="datetime"></td>
+<td>时间</td>
+</tr>
+<tr>
+<td><strong>month<em>**</em></strong></td>
+<td><input type="month"></td>
+<td>月年</td>
+</tr>
+<tr>
+<td><strong>week<em>**</em></strong></td>
+<td><input type="week"></td>
+<td>星期 年</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用新属性"><a href="#常用新属性" class="headerlink" title="常用新属性"></a>常用新属性</h2><table>
+<thead>
+<tr>
+<th><strong>属性<em>**</em></strong></th>
+<th><strong>用法<em>**</em></strong></th>
+<th><strong>含义<em>**</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>placeholder<em>**</em></strong></td>
+<td><input type="text" placeholder="请输入用户名"></td>
+<td>占位符  当用户输入的时候 里面的文字消失  删除所有文字，自动返回</td>
+</tr>
+<tr>
+<td><strong>autofocus<em>**</em></strong></td>
+<td><!--<input type="text" autofocus>--></td>
+<td>规定当页面加载时 input 元素应该自动获得焦点</td>
+</tr>
+<tr>
+<td><strong>multiple<em>**</em></strong></td>
+<td><input type="file" multiple></td>
+<td>多文件上传</td>
+</tr>
+<tr>
+<td><strong>autocomplete<em>**</em></strong></td>
+<td><input type="text" autocomplete="off"></td>
+<td>规定表单是否应该启用自动完成功能  有2个值，一个是on 一个是off      on 代表记录已经输入的值  1.autocomplete 首先需要提交按钮 <br>2.这个表单您必须给他名字</td>
+</tr>
+<tr>
+<td><strong>required<em>**</em></strong></td>
+<td><input type="text" required></td>
+<td>必填项  内容不能为空</td>
+</tr>
+<tr>
+<td><strong>accesskey<em>**</em></strong></td>
+<td><input type="text" accesskey="s"></td>
+<td>规定激活（使元素获得焦点）元素的快捷键   采用 alt + s的形式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="综合案例"><a href="#综合案例" class="headerlink" title="综合案例"></a>综合案例</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>学生档案<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"userName"</span>&gt;</span>姓名:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userName"</span> <span class="attr">id</span>=<span class="string">"userName"</span> <span class="attr">placeholder</span>=<span class="string">"请输入用户名"</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"userPhone"</span>&gt;</span>手机号码:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"tel"</span> <span class="attr">name</span>=<span class="string">"userPhone"</span> <span class="attr">id</span>=<span class="string">"userPhone"</span> <span class="attr">pattern</span>=<span class="string">"^1\d&#123;10&#125;$"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"email"</span>&gt;</span>邮箱地址:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">required</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">id</span>=<span class="string">"email"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"collage"</span>&gt;</span>所属学院:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"collage"</span> <span class="attr">id</span>=<span class="string">"collage"</span> <span class="attr">list</span>=<span class="string">"cList"</span> <span class="attr">placeholder</span>=<span class="string">"请选择"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"cList"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"前端与移动开发学院"</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"java学院"</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"c++学院"</span>&gt;</span><span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">datalist</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"score"</span>&gt;</span>入学成绩:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">max</span>=<span class="string">"100"</span> <span class="attr">min</span>=<span class="string">"0"</span> <span class="attr">value</span>=<span class="string">"0"</span> <span class="attr">id</span>=<span class="string">"score"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">legend</span>&gt;</span>学生档案思密达<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">label</span>&gt;</span>姓名: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入学生名字"</span>/&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">label</span>&gt;</span>手机号: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"tel"</span> /&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">label</span>&gt;</span>邮箱: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> /&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">label</span>&gt;</span>所属学院:  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请选择学院"</span> <span class="attr">list</span>=<span class="string">"xueyuan"</span>/&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"xueyuan"</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">option</span>&gt;</span>java学院<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">option</span>&gt;</span>前端学院<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">option</span>&gt;</span>php学院<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">option</span>&gt;</span>设计学院<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    	<span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    	<span class="tag">&lt;<span class="name">label</span>&gt;</span>出生日期:   <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span> /&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">label</span>&gt;</span>成绩:  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> /&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">label</span>&gt;</span>毕业时间:  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span> /&gt;</span><span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> /&gt;</span>  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"inTime"</span>&gt;</span>入学日期:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span> <span class="attr">id</span>=<span class="string">"inTime"</span> <span class="attr">name</span>=<span class="string">"inTime"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"leaveTime"</span>&gt;</span>毕业日期:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span> <span class="attr">id</span>=<span class="string">"leaveTime"</span> <span class="attr">name</span>=<span class="string">"leaveTime"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="多媒体标签"><a href="#多媒体标签" class="headerlink" title="多媒体标签"></a>多媒体标签</h2><ul>
+<li>embed：标签定义嵌入的内容</li>
+<li>audio：播放音频</li>
+<li>video：播放视频</li>
+</ul>
+<h3 id="多媒体-embed（会使用）"><a href="#多媒体-embed（会使用）" class="headerlink" title="多媒体 embed（会使用）"></a>多媒体 embed（会使用）</h3><p>embed可以用来插入各种多媒体，格式可以是 Midi、Wav、AIFF、AU、MP3等等。url为音频或视频文件及其路径，可以是相对路径或绝对路径。</p>
+<p>因为兼容性问题，我们这里只讲解 插入网络视频， 后面H5会讲解 audio 和video 视频多媒体。 </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">"http://player.youku.com/player.php/sid/XMTI4MzM2MDIwOA==/v.swf"</span> <span class="attr">allowFullScreen</span>=<span class="string">"true"</span> <span class="attr">quality</span>=<span class="string">"high"</span> <span class="attr">width</span>=<span class="string">"480"</span> <span class="attr">height</span>=<span class="string">"400"</span> <span class="attr">align</span>=<span class="string">"middle"</span> <span class="attr">allowScriptAccess</span>=<span class="string">"always"</span> <span class="attr">type</span>=<span class="string">"application/x-shockwave-flash"</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 优酷，土豆，爱奇艺，腾讯、乐视等等</p>
+<ol>
+<li>先上传   </li>
+<li>在分享</li>
+</ol>
+<h3 id="多媒体-audio"><a href="#多媒体-audio" class="headerlink" title="多媒体 audio"></a>多媒体 audio</h3><p>HTML5通过<audio>标签来解决音频播放的问题。</audio></p>
+<p>并且可以通过附加属性可以更友好控制音频的播放，如：</p>
+<p>autoplay 自动播放</p>
+<p>controls 是否显不默认播放控件</p>
+<p>loop 循环播放    如果这个属性不写 默认播放一次  loop  或者  loop = “loop”    表示无限循环</p>
+<p>由于版权等原因，不同的浏览器可支持播放的格式是不一样的，如下图供参考</p>
+<p><img src="D:/baiduyundownload/01html%E5%92%8Ccss/%E8%B5%84%E6%96%99/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%8D%81%E5%A4%A9/%E7%AC%94%E8%AE%B0/media/1498468041058.png" alt="1498468041058"> </p>
+<p>多浏览器支持的方案，如下图</p>
+<p><source> 标签允许您规定可替换的视频/音频文件供浏览器根据它对媒体类型或者编解码器的支持进行选择</p>
+ <audio controls><br><br>​    <!--source标签指定多格式音频文件 --><br><br>​    <source src="./music/see.mp3"><br><br>​    <source src="./music/see.wav"><br><br>​    <source src="./music/see.ogg"><br><br></audio>
+
+<h3 id="多媒体-video"><a href="#多媒体-video" class="headerlink" title="多媒体 video"></a>多媒体 video</h3><video src="my.mp4" controls="controls"></video>
+
+<p>同样，通过附加属性可以更友好的控制视频的播放</p>
+<p>autoplay 自动播放</p>
+<p>controls 是否显示默认播放控件</p>
+<p>loop 循环播放</p>
+<p>width 设置播放窗口宽度</p>
+<p>height 设置播放窗口的高度</p>
+<p>由于版权等原因，不同的浏览器可支持播放的格式是不一样的，如下图供参考</p>
+<p><img src="D:/baiduyundownload/01html%E5%92%8Ccss/%E8%B5%84%E6%96%99/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%AC%AC%E5%8D%81%E5%A4%A9/%E7%AC%94%E8%AE%B0/media/1498468086199.png" alt="1498468086199"> </p>
+<h2 id="标签写法"><a href="#标签写法" class="headerlink" title="标签写法"></a>标签写法</h2><p>不允许写的结束符标签area,basebr,col,command,embed,hr,img,input,keygen,link,meta,param,source,track,wbr. </p>
+<p>可以省略结束符的标签：li， dt,dd p rt, optgroup,option,colgroup,thread,tbody,tr,td,th, </p>
+<p>1、mark  高亮文本 2、progress  进度条 3、time  时间 <time datetime="2013-10-20T09:00Z" pubdate="">9:00</time> 4、ruby  文本解释 5、wbr  软换行，类似于br，当页面很窄时文本会自动换行，否则正常排版。 </p>
+<p><script>   defer属性是推迟作用，先到指定网站，完成操作（例如去个网址下载），再解析完html文档的代码 async属性是同步作用，先到制定网站，然后一边操作，一边解析html文档的代码 </p>
+<p>进度条</p>
+<p><code>&lt;meter&gt;</code> —–状态标签   </p>
+<p><code>&lt;progress&gt;</code> —–状态标签 </p>
+<p><strong>value:</strong>当前值 <strong>min:</strong>最小值，默认值是0 <strong>max:</strong>最大值，默认值是1 <strong>low:</strong>定义度量的值位于哪个点，被界定为低的值 <strong>high:</strong>定义度量的值位于哪个点，被界定为高的值 <strong>optimum:</strong>最佳值.如果该值高于<code>high</code>属性，则意味着值越高越好。如果该值低于 <code>low</code> 属性的值，则意味着值越低越好。 </p>
+<h2 id=""><a href="#" class="headerlink" title="#"></a>#</h2><p>1.兼容性配置：</p>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+<ol>
+<li>双核浏览器优先使用webkit：<meta name="renderer" content="webkit">
+
+</li>
+</ol>
+<p>3.DNS预解析（提升网站性能）：</p>
+<p><link rel="dns-prefetch" href="//static.360buyimg.com"><br>//这一行先加载图片，提升网站图片的加载速度</p>
+</script></p>
+        </section>
+    </article>
+    
+        <!-- disqus 评论框 start -->
+        <div class="comment">
+            <div id="disqus_thread" class="disqus-thread">
+              <i>加载评论框需要翻墙</i>
+            </div>
+        </div>
+        <!-- disqus 评论框 end -->
+    
+    
+        <!-- livere 评论框 start -->
+        <div class="comment">
+            <div id="lv-container" data-id="city" data-uid="your_livere_uid"></div>
+        </div>
+        <!-- livere 评论框 end -->
+        
+  </div>
+  <aside>
+    
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局属性：对于任何一个标签都可以使用"><span class="toc-number">1.</span> <span class="toc-text">全局属性：对于任何一个标签都可以使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#页面窗口"><span class="toc-number">1.1.</span> <span class="toc-text">页面窗口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用新标签"><span class="toc-number"></span> <span class="toc-text">常用新标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新增的input-type属性值："><span class="toc-number"></span> <span class="toc-text">新增的input type属性值：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用新属性"><span class="toc-number"></span> <span class="toc-text">常用新属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综合案例"><span class="toc-number"></span> <span class="toc-text">综合案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多媒体标签"><span class="toc-number"></span> <span class="toc-text">多媒体标签</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多媒体-embed（会使用）"><span class="toc-number">1.</span> <span class="toc-text">多媒体 embed（会使用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多媒体-audio"><span class="toc-number">2.</span> <span class="toc-text">多媒体 audio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多媒体-video"><span class="toc-number">3.</span> <span class="toc-text">多媒体 video</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签写法"><span class="toc-number"></span> <span class="toc-text">标签写法</span></a>
+        </div>
+    </div>
+    
+  </aside>
+</main>
+
+<!-- disqus 公共JS代码 -->
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = "your_disqus_shortname";
+  var disqus_identifier = "http://fwh97.com/2018/09/06/html/";
+  var disqus_url = "http://fwh97.com/2018/09/06/html/";
+
+  isAgent(getDisqus)
+
+  // determine user agent in China
+  function isAgent(cb) {
+    var url = '//graph.facebook.com/feed?callback=h';
+    var xhr = new XMLHttpRequest();
+    var called = false;
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      called = true;
+      cb(true);
+      }
+    };
+    xhr.send();
+    // timeout 1s, this facebook API is very fast.
+    setTimeout(function() {
+      if (!called) {
+      xhr.abort();
+      cb(false)
+      }
+    }, 1000);
+  }
+
+  function getDisqus(isAgent) {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; 
+    dsq.async = true
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq)
+  }
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+<script type="text/javascript">
+  (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') { return; }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2018 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/lib/in-view.min.js"></script>
+<script src="/lib/lodash.min.js"></script>
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
+
+  document.body.addEventListener('touchstart', function(){});
+  
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
+
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
+
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
+
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
+
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
+
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+<script src="/lib/jquery.fancybox.min.js"></script>
+
+
+</body>
+</html>
